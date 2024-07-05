@@ -1,11 +1,9 @@
-package it.unisa.model.beans;
+package it.unisa.model.recensione;
 
 import java.util.HashMap;
 
 public class RecensioneBean {
-    /**
-     * IDCLIENTE, DESCRIZIONE
-     */
+
 
     private HashMap<Integer, Recensione> recensioni;
     private int idProdotto;

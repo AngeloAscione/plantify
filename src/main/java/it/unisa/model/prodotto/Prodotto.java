@@ -1,16 +1,17 @@
-package it.unisa.model.beans;
+package it.unisa.model.prodotto;
 
-public abstract class Vendibile {
+public abstract class Prodotto  {
 
     enum Categoria{
         GIFTCARD, PIANTA
     }
-
     private String nome;
     private String descrizione;
     private Categoria cat;
     private float prezzo;
     private int inStock;
+
+
 
     public int getInStock() {
         return inStock;

@@ -67,6 +67,7 @@ public class DBConnector {
             p.setRemoveAbandoned(true);
             datasource = new DataSource();
             datasource.setPoolProperties(p);
+
         }
         return datasource.getConnection();
     }

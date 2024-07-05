@@ -1,18 +1,43 @@
-package it.unisa.model.beans;
+package it.unisa.model.utente;
 
 public class UserBean {
-
     private enum TipoUtente{
         CLIENTE, AMMINISTRATORE
     }
-
     private int id;
     private String nome;
     private String cognome;
     private String via;
     private int cap;
+    private int civico;
     private String email;
+    private String password;
+    private String number;
     private TipoUtente tipo;
+
+    public int getCivico() {
+        return civico;
+    }
+
+    public void setCivico(int civico) {
+        this.civico = civico;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
     public int getId() {
         return id;

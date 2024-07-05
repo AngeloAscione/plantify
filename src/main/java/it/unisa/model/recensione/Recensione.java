@@ -1,4 +1,4 @@
-package it.unisa.model.beans;
+package it.unisa.model.recensione;
 
 public class Recensione {
 

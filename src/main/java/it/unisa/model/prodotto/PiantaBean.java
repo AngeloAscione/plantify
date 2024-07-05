@@ -1,6 +1,6 @@
-package it.unisa.model.beans;
+package it.unisa.model.prodotto;
 
-public class PiantaBean extends Vendibile{
+public class PiantaBean extends Prodotto{
 
     private String dominio;
     private String regno;

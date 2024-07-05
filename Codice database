@@ -1,0 +1,91 @@
+/*create database Plantify_vero;*/
+use Plantify_vero;
+CREATE TABLE Utente (
+    UtenteID INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Cognome VARCHAR(255),
+    Email VARCHAR(100) UNIQUE,
+    Password VARCHAR(100),
+    Via VARCHAR(255),
+    Civico INT,
+    CAP INT,
+    Telefono VARCHAR(15),
+    IsAdmin BOOLEAN
+);
+
+CREATE TABLE Prodotto (
+    ProdottoID INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Quantita INT CHECK (Quantita >= 0),
+    Prezzo DOUBLE CHECK (Prezzo >= 0)
+);
+
+CREATE TABLE Recensione (
+    RecensioneID INT,
+    UtenteID INT,
+    ProdottoID INT,
+    Testo TEXT,
+    Titolo VARCHAR(100),
+    Valutazione INT,
+    Data DATE,
+    PRIMARY KEY (RecensioneID, Data, UtenteID, ProdottoID),
+    FOREIGN KEY (UtenteID) REFERENCES Utente(UtenteID),
+    FOREIGN KEY (ProdottoID) REFERENCES Prodotto(ProdottoID)
+);
+
+CREATE TABLE Categoria (
+    CategoriaID INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Descrizione TEXT
+);
+
+CREATE TABLE Pianta (
+    PiantaID INT PRIMARY KEY,
+    CategoriaID INT,
+    Nome VARCHAR(255),
+    Descrizione VARCHAR(255),
+    FOREIGN KEY (CategoriaID) REFERENCES Categoria(CategoriaID)
+);
+
+CREATE TABLE GiftCard (
+    GiftCardID INT PRIMARY KEY,
+    Codice VARCHAR(100),
+    Valore DECIMAL(10, 2)
+);
+
+CREATE TABLE Ordine (
+    OrdineID INT PRIMARY KEY,
+    UtenteID INT,
+    DataOrdine DATETIME,
+    Totale DECIMAL(10, 2),
+    Stato ENUM('processato', 'pagato', 'spedito', 'consegnato') NOT NULL,
+    FOREIGN KEY (UtenteID) REFERENCES Utente(UtenteID)
+);
+
+CREATE TABLE OrderItem (
+    OrderItemID INT,
+    OrdineID INT,
+    ProdottoID INT,
+    Quantita INT,
+    Prezzo DECIMAL(10, 2),
+    PRIMARY KEY (OrderItemID, OrdineID, ProdottoID),
+    FOREIGN KEY (OrdineID) REFERENCES Ordine(OrdineID),
+    FOREIGN KEY (ProdottoID) REFERENCES Prodotto(ProdottoID)
+);
+
+CREATE TABLE Carrello (
+    CarrelloID INT,
+    UtenteID INT,
+    PRIMARY KEY (CarrelloID, UtenteID),
+    FOREIGN KEY (UtenteID) REFERENCES Utente(UtenteID)
+);
+
+CREATE TABLE CartItem (
+    CartItemID INT,
+    CarrelloID INT,
+    ProdottoID INT,
+    Quantita INT,
+    PRIMARY KEY (CartItemID, CarrelloID, ProdottoID),
+    FOREIGN KEY (CarrelloID) REFERENCES Carrello(CarrelloID),
+    FOREIGN KEY (ProdottoID) REFERENCES Prodotto(ProdottoID)
+);
