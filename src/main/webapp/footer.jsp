@@ -1,61 +1,10 @@
-<!--<%--
+<%--
   Created by IntelliJ IDEA.
   User: fedeg
   Date: 05/07/2024
   Time: 17:49
   To change this template use File | Settings | File Templates.
 --%>
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="css/provastyle.css">
-</head>
-<body>
-<footer>
-    <div class="footer-container">
-        <div class="footer-section about">
-            <h2>About Us</h2>
-            <p>Plantify è il miglior posto per acquistare le tue piante preferite online. Offriamo una vasta selezione di piante per ogni esigenza.</p>
-            <div class="social-icons">
-                <a href="#"><i class="img-facebook-f"></i></a>
-                <a href="#"><i class="img-twitter"></i></a>
-                <a href="#"><i class="img-instagram"></i></a>
-                <a href="#"><i class="img-linkedin-in"></i></a>
-            </div>
-    <div class="container">
-        <div class="bottom-left-box">
-            <ul>
-                <li>Elemento 1</li>
-                <li>Elemento 2</li>
-                <li>Elemento 3</li>
-                <li>Elemento 4</li>
-            </ul>
-            <ul>
-                <li>Elemento 1</li>
-                <li>Elemento 2</li>
-                <li>Elemento 3</li>
-                <li>Elemento 4</li>
-            </ul>
-            <ul>
-                <li>Elemento 1</li>
-                <li>Elemento 2</li>
-                <li>Elemento 3</li>
-                <li>Elemento 4</li>
-            </ul>
-        </div>
-    </div>
-
-
-
-
-    <div class="footer-bottom">
-        <p>&copy; 2024 Plantify. All rights reserved.</p>
-    </div>
-</footer>
-</body>
-</html>
--->
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,8 +15,6 @@
     <link rel="stylesheet" href="css/provastyle.css">
 </head>
 <body>
-<!-- Your main content goes here -->
-
 <footer>
     <div class="footer-container">
         <div class="footer-left">
