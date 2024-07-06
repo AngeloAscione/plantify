@@ -33,18 +33,15 @@ CREATE TABLE Recensione (
     FOREIGN KEY (ProdottoID) REFERENCES Prodotto(ProdottoID)
 );
 
-CREATE TABLE Categoria (
-    CategoriaID INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Descrizione TEXT
-);
-
 CREATE TABLE Pianta (
     PiantaID INT PRIMARY KEY,
-    CategoriaID INT,
     Nome VARCHAR(255),
     Descrizione VARCHAR(255),
-    FOREIGN KEY (CategoriaID) REFERENCES Categoria(CategoriaID)
+
+    private String famiglia;
+    private String genere;
+    private String specie;
+    private String nomeComune;
 );
 
 CREATE TABLE GiftCard (

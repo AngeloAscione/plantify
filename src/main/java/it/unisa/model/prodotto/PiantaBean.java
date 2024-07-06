@@ -2,11 +2,6 @@ package it.unisa.model.prodotto;
 
 public class PiantaBean extends Prodotto{
 
-    private String dominio;
-    private String regno;
-    private String phylum;
-    private String classe;
-    private String ordine;
     private String famiglia;
     private String genere;
     private String specie;
@@ -16,45 +11,6 @@ public class PiantaBean extends Prodotto{
         this.setCat(Categoria.PIANTA);
     }
 
-    public String getDominio() {
-        return dominio;
-    }
-
-    public void setDominio(String dominio) {
-        this.dominio = dominio;
-    }
-
-    public String getRegno() {
-        return regno;
-    }
-
-    public void setRegno(String regno) {
-        this.regno = regno;
-    }
-
-    public String getPhylum() {
-        return phylum;
-    }
-
-    public void setPhylum(String phylum) {
-        this.phylum = phylum;
-    }
-
-    public String getClasse() {
-        return classe;
-    }
-
-    public void setClasse(String classe) {
-        this.classe = classe;
-    }
-
-    public String getOrdine() {
-        return ordine;
-    }
-
-    public void setOrdine(String ordine) {
-        this.ordine = ordine;
-    }
 
     public String getFamiglia() {
         return famiglia;

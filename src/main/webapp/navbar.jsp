@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="css/provastyle.css">
 </head>
+<body>
 <nav class="navbar">
     <div class="logo">
         <img src="logo.png" alt="Plantify Logo">
@@ -26,5 +27,5 @@
         </div>
     </div>
 </nav>
-
+</body>
 </html>
