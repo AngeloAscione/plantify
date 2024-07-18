@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-public class OrderItemDAO implements DAOInterface {
+public class OrderItemDAO implements DAOInterface<OrderItemBean, Long> {
     @Override
     public OrderItemBean doRetrieveByKey(long id) throws SQLException {
         String query = "SELECT * FROM OrderItem WHERE idItem = ?";
@@ -32,7 +32,7 @@ public class OrderItemDAO implements DAOInterface {
     }
 
     @Override
-    public long doSave(Object product) throws SQLException {
+    public long doSave(OrderItemBean product) throws SQLException {
         return 0;
     }
 
@@ -52,7 +52,7 @@ public class OrderItemDAO implements DAOInterface {
     }
 
     @Override
-    public boolean doDelete(long id) throws SQLException {
+    public boolean doDelete(Long id) throws SQLException {
         String query = "DELETE FROM OrderItem WHERE id = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)){

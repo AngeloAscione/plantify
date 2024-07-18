@@ -21,7 +21,7 @@ public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
         return cartItem;
     }
     @Override
-    public CartItemBean doRetrieveByKey(long code) throws SQLException {
+    public CartItemBean doRetrieveByKey(long id) throws SQLException {
         String query = "SELECT  * FROM cartItem WHERE id=?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -33,6 +33,11 @@ public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
                 return null;
             }
         }
+    }
+
+    @Override
+    public Collection<CartItemBean> doRetrieveAll(String order) throws SQLException {
+        return null;
     }
 
     @Override
