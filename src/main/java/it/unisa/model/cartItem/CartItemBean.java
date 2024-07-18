@@ -3,33 +3,33 @@ package it.unisa.model.cartItem;
 import java.io.Serializable;
 
 public class CartItemBean implements Serializable {
-    private long id;
-    private long idProdotto;
-    private long idCarrello;
+    private int cartItemId;
+    private int prodottoid;
+    private int carrelloid;
     private int quantita;
 
-    public long getId() {
-        return id;
+    public int getCartItemId() {
+        return cartItemId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setCartItemId(int cartItemId) {
+        this.cartItemId = cartItemId;
     }
 
-    public long getIdProdotto() {
-        return idProdotto;
+    public int getProdottoid() {
+        return prodottoid;
     }
 
-    public void setIdProdotto(long idProdotto) {
-        this.idProdotto = idProdotto;
+    public void setProdottoid(int prodottoid) {
+        this.prodottoid = prodottoid;
     }
 
-    public long getIdCarrello() {
-        return idCarrello;
+    public int getCarrelloid() {
+        return carrelloid;
     }
 
-    public void setIdCarrello(long idCarrello) {
-        this.idCarrello = idCarrello;
+    public void setCarrelloid(int carrelloid) {
+        this.carrelloid = carrelloid;
     }
 
     public int getQuantita() {

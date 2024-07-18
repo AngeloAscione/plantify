@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public class OrderItemDAO implements DAOInterface<OrderItemBean, Long> {
     @Override
-    public OrderItemBean doRetrieveByKey(long id) throws SQLException {
+    public OrderItemBean doRetrieveByKey(int id) throws SQLException {
         String query = "SELECT * FROM OrderItem WHERE idItem = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)){

@@ -1,6 +1,5 @@
 package it.unisa.model.carrello;
 
-import com.mysql.cj.jdbc.ConnectionImpl;
 import it.unisa.model.DAOInterface;
 import it.unisa.model.DBConnector;
 
@@ -12,7 +11,7 @@ import java.util.*;
 
 public class CarrelloDAO implements DAOInterface<CarrelloBean, Long> {
     @Override
-        public CarrelloBean doRetrieveByKey(long id) throws SQLException {
+        public CarrelloBean doRetrieveByKey(int id) throws SQLException {
             String query = "SELECT * FROM Carrello WHERE id = ?";
             try (Connection connection = DBConnector.getInstance().getConnection();
                  PreparedStatement statement = connection.prepareStatement(query) ) {
@@ -51,8 +50,8 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean, Long> {
             String query = "UPDATE Carrello SET idUtente = ? WHERE Id = ?";
             try (Connection connection = DBConnector.getInstance().getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setLong(1, carrello.getIdUtente());
-                statement.setLong(2, carrello.getId());
+                statement.setLong(1, carrello.getUtenteid());
+                statement.setLong(2, carrello.getCarrelloId());
                 statement.executeUpdate();
             }
         }
@@ -70,8 +69,8 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean, Long> {
 
         private CarrelloBean extractCarrelloFromResultSet(ResultSet resultSet) throws SQLException {
             CarrelloBean carrello = new CarrelloBean();
-            carrello.setId(resultSet.getLong("id"));
-            carrello.setIdUtente(resultSet.getLong("IdUtente"));
+            carrello.setCarrelloId(resultSet.getInt("carrelloId"));
+            carrello.setUtenteid(resultSet.getInt("utenteId"));
             return carrello;
         }
     }

@@ -1,6 +1,5 @@
 package it.unisa.model.cartItem;
 
-import com.mysql.cj.jdbc.ConnectionImpl;
 import it.unisa.model.DAOInterface;
 import it.unisa.model.DBConnector;
 
@@ -14,14 +13,14 @@ public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
 
     private CartItemBean extractCartItemFromResultSet(ResultSet resultSet) throws SQLException {
         CartItemBean cartItem = new CartItemBean();
-        cartItem.setId(resultSet.getLong("id"));
-        cartItem.setIdProdotto(resultSet.getLong("idProdotto"));
-        cartItem.setIdCarrello(resultSet.getLong("idCarrello"));
+        cartItem.setCartItemId(resultSet.getInt("cartItemId"));
+        cartItem.setProdottoid(resultSet.getInt("prodottoid"));
+        cartItem.setCarrelloid(resultSet.getInt("carrelloid"));
         cartItem.setQuantita(resultSet.getInt("quantita"));
         return cartItem;
     }
     @Override
-    public CartItemBean doRetrieveByKey(long id) throws SQLException {
+    public CartItemBean doRetrieveByKey(int id) throws SQLException {
         String query = "SELECT  * FROM cartItem WHERE id=?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -50,10 +49,10 @@ public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
         String query = "UPDATE cartItem SET idProdotto = ?, idCarrello = ?, quantita = ? WHERE id = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, cartItem.getIdProdotto());
-            statement.setLong(2, cartItem.getIdCarrello());
+            statement.setLong(1, cartItem.getProdottoid());
+            statement.setLong(2, cartItem.getCarrelloid());
             statement.setInt(3, cartItem.getQuantita());
-            statement.setLong(4, cartItem.getId());
+            statement.setLong(4, cartItem.getCartItemId());
             statement.executeUpdate();
         }
 

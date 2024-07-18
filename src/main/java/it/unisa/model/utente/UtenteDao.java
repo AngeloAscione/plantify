@@ -1,7 +1,6 @@
 package it.unisa.model.utente;
 
 import it.unisa.model.DAOInterface;
-import it.unisa.model.DBConnector;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -9,7 +8,7 @@ import java.util.Collection;
 public class UtenteDao implements DAOInterface {
 
     @Override
-    public Object doRetrieveByKey(long code) throws SQLException {
+    public Object doRetrieveByKey(int id) throws SQLException {
         return null;
     }
 

@@ -8,7 +8,7 @@ import java.util.Collection;
 public class RecensioneDAO implements DAOInterface {
 
     @Override
-    public Object doRetrieveByKey(long code) throws SQLException {
+    public Object doRetrieveByKey(int id) throws SQLException {
         return null;
     }
 
