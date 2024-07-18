@@ -11,7 +11,6 @@ import java.util.TimeZone;
  * Classe che si occupa della connessione con il database
  */
 public class DBConnector {
-
     private static DBConnector instance = null;
     private String uri = null;
     private String username = null;
