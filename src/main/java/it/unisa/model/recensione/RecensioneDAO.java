@@ -1,12 +1,11 @@
-package it.unisa.model.utente;
+package it.unisa.model.recensione;
 
 import it.unisa.model.DAOInterface;
-import it.unisa.model.DBConnector;
 
 import java.sql.SQLException;
 import java.util.Collection;
 
-public class UtenteDao implements DAOInterface {
+public class RecensioneDAO implements DAOInterface {
 
     @Override
     public Object doRetrieveByKey(long code) throws SQLException {

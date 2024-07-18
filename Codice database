@@ -1,88 +1,98 @@
-/*create database Plantify_vero;*/
-use Plantify_vero;
-CREATE TABLE Utente (
-    UtenteID INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Cognome VARCHAR(255),
-    Email VARCHAR(100) UNIQUE,
-    Password VARCHAR(100),
-    Via VARCHAR(255),
-    Civico INT,
-    CAP INT,
-    Telefono VARCHAR(15),
-    IsAdmin BOOLEAN
-);
+ CREATE TABLE `Carrello` (
+  `CarrelloID` int NOT NULL AUTO_INCREMENT,
+  `UtenteID` int NOT NULL,
+  PRIMARY KEY (`CarrelloID`,`UtenteID`),
+  KEY `UtenteID` (`UtenteID`),
+  CONSTRAINT `Carrello_ibfk_1` FOREIGN KEY (`UtenteID`) REFERENCES `Utente` (`UtenteID`)
+)
+CREATE TABLE `CartItem` (
+  `CartItemID` int NOT NULL AUTO_INCREMENT,
+  `CarrelloID` int NOT NULL,
+  `ProdottoID` int NOT NULL,
+  `Qta` int DEFAULT NULL,
+  PRIMARY KEY (`CartItemID`,`CarrelloID`,`ProdottoID`),
+  KEY `CarrelloID` (`CarrelloID`),
+  KEY `ProdottoID` (`ProdottoID`),
+  CONSTRAINT `CartItem_ibfk_1` FOREIGN KEY (`CarrelloID`) REFERENCES `Carrello` (`CarrelloID`),
+  CONSTRAINT `CartItem_ibfk_2` FOREIGN KEY (`ProdottoID`) REFERENCES `Prodotto` (`ProdottoID`)
+)
+ CREATE TABLE `Categoria` (
+  `CategoriaID` int NOT NULL AUTO_INCREMENT,
+  `Nome` varchar(255) DEFAULT NULL,
+  `Descrizone` text,
+  PRIMARY KEY (`CategoriaID`)
+)
+ CREATE TABLE `GiftCardDetails` (
+  `GiftCardID` int NOT NULL AUTO_INCREMENT,
+  `ProdottoID` int DEFAULT NULL,
+  `stato` enum('VENDUTO','UTILIZZATO') DEFAULT NULL,
+  PRIMARY KEY (`GiftCardID`),
+  KEY `ProdottoID` (`ProdottoID`),
+  CONSTRAINT `GiftCardDetails_ibfk_1` FOREIGN KEY (`ProdottoID`) REFERENCES `Prodotto` (`ProdottoID`)
+)
+CREATE TABLE `OrderItem` (
+  `OrderItemID` int NOT NULL AUTO_INCREMENT,
+  `OrdineID` int NOT NULL,
+  `ProdottoID` int NOT NULL,
+  `Quantita` int DEFAULT NULL,
+  `Prezzo` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`OrderItemID`,`OrdineID`,`ProdottoID`),
+  KEY `OrdineID` (`OrdineID`),
+  KEY `ProdottoID` (`ProdottoID`),
+  CONSTRAINT `OrderItem_ibfk_1` FOREIGN KEY (`OrdineID`) REFERENCES `Ordine` (`OrdineID`),
+  CONSTRAINT `OrderItem_ibfk_2` FOREIGN KEY (`ProdottoID`) REFERENCES `Prodotto` (`ProdottoID`)
+)
+CREATE TABLE `Ordine` (
+  `OrdineID` int NOT NULL AUTO_INCREMENT,
+  `UtenteID` int DEFAULT NULL,
+  `DataOrdine` datetime DEFAULT NULL,
+  `Totale` decimal(10,2) DEFAULT NULL,
+  `Stato` enum('processato','pagato','spedito','consegnato') NOT NULL,
+  PRIMARY KEY (`OrdineID`),
+  KEY `UtenteID` (`UtenteID`),
+  CONSTRAINT `Ordine_ibfk_1` FOREIGN KEY (`UtenteID`) REFERENCES `Utente` (`UtenteID`)
+)
+CREATE TABLE `Prodotto` (
+  `ProdottoID` int NOT NULL AUTO_INCREMENT,
+  `CategoriaID` int DEFAULT NULL,
+  `Nome` varchar(255) DEFAULT NULL,
+  `Descrizione` text,
+  `Prezzo` double DEFAULT NULL,
+  `Qta` int DEFAULT NULL,
+  `Foto` varchar(4096) DEFAULT NULL,
+  PRIMARY KEY (`ProdottoID`),
+  KEY `CategoriaID` (`CategoriaID`),
+  CONSTRAINT `Prodotto_ibfk_1` FOREIGN KEY (`CategoriaID`) REFERENCES `Categoria` (`CategoriaID`),
+  CONSTRAINT `Prodotto_chk_1` CHECK ((`Prezzo` >= 0)),
+  CONSTRAINT `Prodotto_chk_2` CHECK ((`Qta` >= 0))
+)
+CREATE TABLE `Recensione` (
+  `RecensioneID` int NOT NULL AUTO_INCREMENT,
+  `UtenteID` int NOT NULL,
+  `ProdottoID` int NOT NULL,
+  `Descrizione` text,
+  `Titolo` varchar(100) DEFAULT NULL,
+  `Valutazione` tinyint DEFAULT NULL,
+  `Data` date NOT NULL,
+  PRIMARY KEY (`RecensioneID`,`Data`,`UtenteID`,`ProdottoID`),
+  KEY `UtenteID` (`UtenteID`),
+  KEY `ProdottoID` (`ProdottoID`),
+  CONSTRAINT `Recensione_ibfk_1` FOREIGN KEY (`UtenteID`) REFERENCES `Utente` (`UtenteID`),
+  CONSTRAINT `Recensione_ibfk_2` FOREIGN KEY (`ProdottoID`) REFERENCES `Prodotto` (`ProdottoID`)
+)
+CREATE TABLE `Utente` (
+  `UtenteID` int NOT NULL AUTO_INCREMENT,
+  `Nome` varchar(100) DEFAULT NULL,
+  `Cognome` varchar(255) DEFAULT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `Password` varchar(100) DEFAULT NULL,
+  `Via` varchar(255) DEFAULT NULL,
+  `Civico` int DEFAULT NULL,
+  `CAP` int DEFAULT NULL,
+  `Telefono` varchar(15) DEFAULT NULL,
+  `IsAdmin` tinyint(1) NOT NULL,
+  `Loggato` tinyint(1) NOT NULL,
+  PRIMARY KEY (`UtenteID`),
+  UNIQUE KEY `Email` (`Email`)
+)
 
-CREATE TABLE Prodotto (
-    ProdottoID INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Quantita INT CHECK (Quantita >= 0),
-    Prezzo DOUBLE CHECK (Prezzo >= 0)
-);
-
-CREATE TABLE Recensione (
-    RecensioneID INT,
-    UtenteID INT,
-    ProdottoID INT,
-    Testo TEXT,
-    Titolo VARCHAR(100),
-    Valutazione INT,
-    Data DATE,
-    PRIMARY KEY (RecensioneID, Data, UtenteID, ProdottoID),
-    FOREIGN KEY (UtenteID) REFERENCES Utente(UtenteID),
-    FOREIGN KEY (ProdottoID) REFERENCES Prodotto(ProdottoID)
-);
-
-CREATE TABLE Pianta (
-    PiantaID INT PRIMARY KEY,
-    Nome VARCHAR(255),
-    Descrizione VARCHAR(255),
-
-    private String famiglia;
-    private String genere;
-    private String specie;
-    private String nomeComune;
-);
-
-CREATE TABLE GiftCard (
-    GiftCardID INT PRIMARY KEY,
-    Codice VARCHAR(100),
-    Valore DECIMAL(10, 2)
-);
-
-CREATE TABLE Ordine (
-    OrdineID INT PRIMARY KEY,
-    UtenteID INT,
-    DataOrdine DATETIME,
-    Totale DECIMAL(10, 2),
-    Stato ENUM('processato', 'pagato', 'spedito', 'consegnato') NOT NULL,
-    FOREIGN KEY (UtenteID) REFERENCES Utente(UtenteID)
-);
-
-CREATE TABLE OrderItem (
-    OrderItemID INT,
-    OrdineID INT,
-    ProdottoID INT,
-    Quantita INT,
-    Prezzo DECIMAL(10, 2),
-    PRIMARY KEY (OrderItemID, OrdineID, ProdottoID),
-    FOREIGN KEY (OrdineID) REFERENCES Ordine(OrdineID),
-    FOREIGN KEY (ProdottoID) REFERENCES Prodotto(ProdottoID)
-);
-
-CREATE TABLE Carrello (
-    CarrelloID INT,
-    UtenteID INT,
-    PRIMARY KEY (CarrelloID, UtenteID),
-    FOREIGN KEY (UtenteID) REFERENCES Utente(UtenteID)
-);
-
-CREATE TABLE CartItem (
-    CartItemID INT,
-    CarrelloID INT,
-    ProdottoID INT,
-    Quantita INT,
-    PRIMARY KEY (CartItemID, CarrelloID, ProdottoID),
-    FOREIGN KEY (CarrelloID) REFERENCES Carrello(CarrelloID),
-    FOREIGN KEY (ProdottoID) REFERENCES Prodotto(ProdottoID)
-);
