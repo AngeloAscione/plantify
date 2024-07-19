@@ -12,13 +12,13 @@ import java.util.Collection;
 public class OrderItemDAO implements DAOInterface<OrderItemBean> {
     @Override
     public OrderItemBean doRetrieveByKey(int id) throws SQLException {
-        String query = "SELECT * FROM OrderItem WHERE idItem = ?";
+        String query = "SELECT * FROM OrderItem WHERE OrderItemID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)){
             statement.setLong(1,id);
             try (ResultSet resultSet = statement.executeQuery()){
                 if(resultSet.next()){
-                    return   extractOrderItemFromResultSet(resultSet);
+                    return  extractOrderItemFromResultSet(resultSet);
                 }
             }
         }
@@ -65,12 +65,11 @@ public class OrderItemDAO implements DAOInterface<OrderItemBean> {
 
     private OrderItemBean extractOrderItemFromResultSet(ResultSet resultSet) throws SQLException {
         OrderItemBean orderItem = new OrderItemBean();
-        orderItem.setId(resultSet.getLong("id"));
-        orderItem.setIdProdotto(resultSet.getLong("idProdotto"));
-        orderItem.setIdOrdine(resultSet.getLong("IdOrdine"));
+        orderItem.setOrderItemId(resultSet.getInt("OrderItemID"));
+        orderItem.setOrdineId(resultSet.getInt("OrdineID"));
+        orderItem.setProdottoId(resultSet.getInt("ProdottoID"));
+        orderItem.setQuantita(resultSet.getInt("Qta"));
         orderItem.setPrezzo(resultSet.getDouble("Prezzo"));
-        orderItem.setQuantita(resultSet.getInt("Quantita"));
-        orderItem.setName(resultSet.getString("Nome"));
         return orderItem;
     }
 

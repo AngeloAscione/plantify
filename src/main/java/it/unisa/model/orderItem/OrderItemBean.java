@@ -1,48 +1,34 @@
 package it.unisa.model.orderItem;
 
 public class OrderItemBean  {
-    private long id;
-    private  String name;
-    private long idProdotto;
+    private int orderItemId;
+    private int ordineId;
+    private int prodottoId;
+    private int quantita;
+    private double prezzo;
 
-    public long getId() {
-        return id;
+    public int getOrderItemId() {
+        return orderItemId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setOrderItemId(int orderItemId) {
+        this.orderItemId = orderItemId;
     }
 
-    public String getName() {
-        return name;
+    public int getOrdineId() {
+        return ordineId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOrdineId(int ordineId) {
+        this.ordineId = ordineId;
     }
 
-    public long getIdProdotto() {
-        return idProdotto;
+    public int getProdottoId() {
+        return prodottoId;
     }
 
-    public void setIdProdotto(long idProdotto) {
-        this.idProdotto = idProdotto;
-    }
-
-    public long getIdOrdine() {
-        return idOrdine;
-    }
-
-    public void setIdOrdine(long idOrdine) {
-        this.idOrdine = idOrdine;
-    }
-
-    public double getPrezzo() {
-        return prezzo;
-    }
-
-    public void setPrezzo(double prezzo) {
-        this.prezzo = prezzo;
+    public void setProdottoId(int prodottoId) {
+        this.prodottoId = prodottoId;
     }
 
     public int getQuantita() {
@@ -53,8 +39,11 @@ public class OrderItemBean  {
         this.quantita = quantita;
     }
 
-    private  long idOrdine;
-    private  double prezzo;
-    private  int quantita;
+    public double getPrezzo() {
+        return prezzo;
+    }
 
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
+    }
 }
