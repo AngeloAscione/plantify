@@ -1,19 +1,9 @@
 package it.unisa.model.categoria;
 
 public class CategoriaBean {
-    private  int categoriaId;
+    private int categoriaId;
     private String nome;
     private String descrizione;
-
-    public CategoriaBean(){
-
-    }
-
-    public CategoriaBean(int categoriaId, String nome, String descrizione) {
-        this.categoriaId = categoriaId;
-        this.nome = nome;
-        this.descrizione = descrizione;
-    }
 
     public int getCategoriaId() {
         return categoriaId;

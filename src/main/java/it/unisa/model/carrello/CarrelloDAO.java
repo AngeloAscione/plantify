@@ -43,7 +43,6 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean> {
     @Override
     public boolean doSave(CarrelloBean carrello) throws SQLException {
         String query = "INSERT INTO Carrello (UtenteID) VALUES (?)";
-        boolean returnValue;
         try(Connection connection = DBConnector.getInstance().getConnection();
             PreparedStatement stm = connection.prepareStatement(query)) {
             stm.setInt(1, carrello.getUtenteid());
@@ -56,8 +55,8 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean> {
         String query = "UPDATE Carrello SET UtenteID = ? WHERE CarrelloID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement stm = connection.prepareStatement(query)) {
-            stm.setLong(1, carrello.getUtenteid());
-            stm.setLong(2, carrello.getCarrelloId());
+            stm.setInt(1, carrello.getUtenteid());
+            stm.setInt(2, carrello.getCarrelloId());
             return stm.executeUpdate() > 0;
         }
     }
@@ -67,7 +66,7 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean> {
         String query = "DELETE FROM Carrello WHERE CarrelloID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
                 PreparedStatement stm = connection.prepareStatement(query)) {
-            stm.setLong(1, id);
+            stm.setInt(1, id);
             return stm.executeUpdate() > 0;
         }
     }
