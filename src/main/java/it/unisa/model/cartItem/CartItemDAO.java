@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
+public class CartItemDAO implements DAOInterface<CartItemBean> {
 
     private CartItemBean extractCartItemFromResultSet(ResultSet resultSet) throws SQLException {
         CartItemBean cartItem = new CartItemBean();
@@ -40,12 +40,12 @@ public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
     }
 
     @Override
-    public long doSave(CartItemBean obj) throws SQLException {
-        return 0;
+    public boolean doSave(CartItemBean obj) throws SQLException {
+        return true;
     }
 
     @Override
-    public void doUpdate(CartItemBean cartItem) throws SQLException {
+    public boolean doUpdate(CartItemBean cartItem) throws SQLException {
         String query = "UPDATE cartItem SET idProdotto = ?, idCarrello = ?, quantita = ? WHERE id = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -56,6 +56,7 @@ public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
             statement.executeUpdate();
         }
 
+        return false;
     }
 
     @Override

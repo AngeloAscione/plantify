@@ -18,13 +18,14 @@ public class RecensioneDAO implements DAOInterface {
     }
 
     @Override
-    public long doSave(Object obj) throws SQLException {
-        return 0;
+    public boolean doSave(Object obj) throws SQLException {
+        return false;
     }
 
     @Override
-    public void doUpdate(Object obj) throws SQLException {
+    public boolean doUpdate(Object obj) throws SQLException {
 
+        return false;
     }
 
     @Override

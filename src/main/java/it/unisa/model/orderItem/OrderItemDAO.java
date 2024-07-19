@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-public class OrderItemDAO implements DAOInterface<OrderItemBean, Long> {
+public class OrderItemDAO implements DAOInterface<OrderItemBean> {
     @Override
     public OrderItemBean doRetrieveByKey(int id) throws SQLException {
         String query = "SELECT * FROM OrderItem WHERE idItem = ?";
@@ -32,12 +32,12 @@ public class OrderItemDAO implements DAOInterface<OrderItemBean, Long> {
     }
 
     @Override
-    public long doSave(OrderItemBean obj) throws SQLException {
-        return 0;
+    public boolean doSave(OrderItemBean obj) throws SQLException {
+        return false;
     }
 
     @Override
-    public void doUpdate(OrderItemBean orderItem) throws SQLException {
+    public boolean doUpdate(OrderItemBean orderItem) throws SQLException {
         String query = "UPDATE OrderItem SET idProdotto = ?, IdOrdine = ?, Prezzo = ?, Quantita = ?, iva = ?, Nome = ? WHERE id = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)){
@@ -49,6 +49,7 @@ public class OrderItemDAO implements DAOInterface<OrderItemBean, Long> {
             statement.setLong(7, orderItem.getId());
             statement.executeUpdate();
         }
+        return false;
     }
 
     @Override

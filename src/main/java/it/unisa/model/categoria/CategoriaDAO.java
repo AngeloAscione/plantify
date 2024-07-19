@@ -53,7 +53,7 @@ public class CategoriaDAO implements DAOInterface {
     }
 
     @Override
-    public long doSave(Object categoria) throws SQLException {
+    public boolean doSave(Object categoria) throws SQLException {
         CategoriaBean catBean = (CategoriaBean) categoria;
         String query = "INSERT INTO Categoria(Nome, Descrizione) VALUES (?, ?)";
         try (Connection connection = DBConnector.getInstance().getConnection();
@@ -62,17 +62,18 @@ public class CategoriaDAO implements DAOInterface {
             stm.setString(2, catBean.getDescrizione());
             try(ResultSet resultSet = stm.executeQuery()){
                 if (!resultSet.next()){
-                    return -1;
+                    return false;
                 } else {
-                   return 0;
+                   return true;
                 }
             }
         }
     }
 
     @Override
-    public void doUpdate(Object obj) throws SQLException {
+    public boolean doUpdate(Object obj) throws SQLException {
 
+        return false;
     }
 
     @Override

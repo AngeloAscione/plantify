@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class WishListItemDAO implements DAOInterface<WishListItemBean,Long> {
+public class WishListItemDAO implements DAOInterface<WishListItemBean> {
     @Override
     public WishListItemBean doRetrieveByKey(int id) throws SQLException {
         String query = "SELECT * FROM WishList WHERE whishListItemId = ?";
@@ -50,12 +50,12 @@ public class WishListItemDAO implements DAOInterface<WishListItemBean,Long> {
     }
 
     @Override
-    public long doSave(WishListItemBean obj) throws SQLException {
-        return 0;
+    public boolean doSave(WishListItemBean obj) throws SQLException {
+        return false;
     }
 
     @Override
-    public void doUpdate(WishListItemBean obj) throws SQLException {
+    public boolean doUpdate(WishListItemBean obj) throws SQLException {
         String query = "UPDATE WishList SET utenteId = ? WHERE wishListItemId = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -64,6 +64,7 @@ public class WishListItemDAO implements DAOInterface<WishListItemBean,Long> {
             statement.executeUpdate();
 
         }
+        return false;
     }
     @Override
     public boolean doDelete(int id) throws SQLException {
