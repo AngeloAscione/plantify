@@ -40,7 +40,7 @@ public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
     }
 
     @Override
-    public long doSave(CartItemBean product) throws SQLException {
+    public long doSave(CartItemBean obj) throws SQLException {
         return 0;
     }
 
@@ -59,7 +59,7 @@ public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
     }
 
     @Override
-    public boolean doDelete(Long id) throws SQLException {
+    public boolean doDelete(int id) throws SQLException {
         String query = "DELETE FROM cartItem WHERE idProdotto =?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {

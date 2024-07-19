@@ -71,12 +71,12 @@ public class CategoriaDAO implements DAOInterface {
     }
 
     @Override
-    public void doUpdate(Object product) throws SQLException {
+    public void doUpdate(Object obj) throws SQLException {
 
     }
 
     @Override
-    public boolean doDelete(Object code) throws SQLException {
+    public boolean doDelete(int code) throws SQLException {
         return false;
     }
 }

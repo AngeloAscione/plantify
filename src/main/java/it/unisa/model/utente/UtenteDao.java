@@ -18,17 +18,17 @@ public class UtenteDao implements DAOInterface {
     }
 
     @Override
-    public long doSave(Object product) throws SQLException {
+    public long doSave(Object obj) throws SQLException {
         return 0;
     }
 
     @Override
-    public void doUpdate(Object product) throws SQLException {
+    public void doUpdate(Object obj) throws SQLException {
 
     }
 
     @Override
-    public boolean doDelete(Object code) throws SQLException {
+    public boolean doDelete(int code) throws SQLException {
         return false;
     }
 }

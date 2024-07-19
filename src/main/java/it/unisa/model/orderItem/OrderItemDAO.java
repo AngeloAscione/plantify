@@ -32,7 +32,7 @@ public class OrderItemDAO implements DAOInterface<OrderItemBean, Long> {
     }
 
     @Override
-    public long doSave(OrderItemBean product) throws SQLException {
+    public long doSave(OrderItemBean obj) throws SQLException {
         return 0;
     }
 
@@ -52,7 +52,7 @@ public class OrderItemDAO implements DAOInterface<OrderItemBean, Long> {
     }
 
     @Override
-    public boolean doDelete(Long id) throws SQLException {
+    public boolean doDelete(int id) throws SQLException {
         String query = "DELETE FROM OrderItem WHERE id = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)){

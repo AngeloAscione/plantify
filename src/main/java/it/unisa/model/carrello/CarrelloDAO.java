@@ -57,7 +57,7 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean, Long> {
         }
 
         @Override
-        public boolean doDelete(Long id) throws SQLException {
+        public boolean doDelete(int id) throws SQLException {
             String query = "DELETE FROM Carrello WHERE id = ?";
             try (Connection connection = DBConnector.getInstance().getConnection();
                     PreparedStatement statement = connection.prepareStatement(query)) {

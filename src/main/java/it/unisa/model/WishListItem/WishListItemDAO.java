@@ -50,23 +50,23 @@ public class WishListItemDAO implements DAOInterface<WishListItemBean,Long> {
     }
 
     @Override
-    public long doSave(WishListItemBean product) throws SQLException {
+    public long doSave(WishListItemBean obj) throws SQLException {
         return 0;
     }
 
     @Override
-    public void doUpdate(WishListItemBean product) throws SQLException {
+    public void doUpdate(WishListItemBean obj) throws SQLException {
         String query = "UPDATE WishList SET utenteId = ? WHERE wishListItemId = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, product.getWhishListItemId());
-            statement.setLong(2, product.getProdottoId());
+            statement.setLong(1, obj.getWhishListItemId());
+            statement.setLong(2, obj.getProdottoId());
             statement.executeUpdate();
 
         }
     }
     @Override
-    public boolean doDelete(Long id) throws SQLException {
+    public boolean doDelete(int id) throws SQLException {
         String query = "DELETE FROM WishListItem WHERE wishLisItemId = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {

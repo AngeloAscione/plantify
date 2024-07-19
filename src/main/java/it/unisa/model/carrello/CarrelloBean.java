@@ -18,7 +18,7 @@ public class CarrelloBean implements Serializable {
         return utenteId;
     }
 
-    public void setUtenteid(int utenteid) {
-        utenteid = utenteid;
+    public void setUtenteid(int utenteId) {
+        this.utenteId = utenteId;
     }
 }
