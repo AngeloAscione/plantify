@@ -26,7 +26,7 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean, Long> {
         }
 
         @Override
-        public Collection<CarrelloBean> doRetrieveAll(String order) throws SQLException {
+        public Collection<CarrelloBean> doRetrieveAll() throws SQLException {
             List<CarrelloBean> carrelli = new ArrayList<>();
             String query = "SELECT * FROM Carrello";
             try (Connection connection = DBConnector.getInstance().getConnection();

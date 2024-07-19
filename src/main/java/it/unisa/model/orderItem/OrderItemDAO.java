@@ -27,7 +27,7 @@ public class OrderItemDAO implements DAOInterface<OrderItemBean, Long> {
 
 
     @Override
-    public Collection doRetrieveAll(String order) throws SQLException {
+    public Collection doRetrieveAll() throws SQLException {
         return null;
     }
 

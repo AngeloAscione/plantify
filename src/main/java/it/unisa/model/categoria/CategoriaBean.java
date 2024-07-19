@@ -5,6 +5,16 @@ public class CategoriaBean {
     private String nome;
     private String descrizione;
 
+    public CategoriaBean(){
+
+    }
+
+    public CategoriaBean(int categoriaId, String nome, String descrizione) {
+        this.categoriaId = categoriaId;
+        this.nome = nome;
+        this.descrizione = descrizione;
+    }
+
     public int getCategoriaId() {
         return categoriaId;
     }

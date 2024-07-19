@@ -35,7 +35,7 @@ public class CartItemDAO implements DAOInterface<CartItemBean, Long> {
     }
 
     @Override
-    public Collection<CartItemBean> doRetrieveAll(String order) throws SQLException {
+    public Collection<CartItemBean> doRetrieveAll() throws SQLException {
         return null;
     }
 

@@ -13,7 +13,7 @@ public class UtenteDao implements DAOInterface {
     }
 
     @Override
-    public Collection doRetrieveAll(String order) throws SQLException {
+    public Collection doRetrieveAll() throws SQLException {
         return null;
     }
 
