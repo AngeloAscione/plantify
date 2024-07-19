@@ -7,9 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class OrderItemDAO implements DAOInterface<OrderItemBean> {
+
     @Override
     public OrderItemBean doRetrieveByKey(int id) throws SQLException {
         String query = "SELECT * FROM OrderItem WHERE OrderItemID = ?";
@@ -25,39 +28,52 @@ public class OrderItemDAO implements DAOInterface<OrderItemBean> {
         return null;
     }
 
-
     @Override
-    public Collection doRetrieveAll() throws SQLException {
-        return null;
+    public Collection<OrderItemBean> doRetrieveAll() throws SQLException {
+        List<OrderItemBean> orderItemList = new ArrayList<>();
+        String query = "SELECT * FROM OrderItem";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement stm = connection.prepareStatement(query);
+             ResultSet resultSet = stm.executeQuery()) {
+            while (resultSet.next()) {
+                orderItemList.add(extractOrderItemFromResultSet(resultSet));
+            }
+        }
+        return orderItemList;
     }
 
     @Override
-    public boolean doSave(OrderItemBean obj) throws SQLException {
-        return false;
+    public boolean doSave(OrderItemBean orderItemBean) throws SQLException {
+        String query = "INSERT INTO OrderItem (OrdineID, ProdottoID, Qta, Prezzo) VALUES (?, ?, ?, ?)";
+        try(Connection connection = DBConnector.getInstance().getConnection();
+            PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, orderItemBean.getOrdineId());
+            stm.setInt(2, orderItemBean.getProdottoId());
+            stm.setInt(3, orderItemBean.getQuantita());
+            stm.setDouble(4, orderItemBean.getPrezzo());
+            return stm.executeUpdate() > 0;
+        }
     }
 
     @Override
     public boolean doUpdate(OrderItemBean orderItem) throws SQLException {
-        String query = "UPDATE OrderItem SET idProdotto = ?, IdOrdine = ?, Prezzo = ?, Quantita = ?, iva = ?, Nome = ? WHERE id = ?";
+        String query = "UPDATE OrderItem SET OrdineID = ?, ProdottoID = ?, Qta = ?, Prezzo = ? WHERE OrderItemID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)){
-            statement.setLong(1, orderItem.getIdProdotto());
-            statement.setLong(2, orderItem.getIdOrdine());
-            statement.setDouble(3, orderItem.getPrezzo());
-            statement.setLong(4, orderItem.getQuantita());
-            statement.setString(6, orderItem.getName());
-            statement.setLong(7, orderItem.getId());
-            statement.executeUpdate();
+            statement.setInt(1, orderItem.getOrdineId());
+            statement.setInt(2, orderItem.getProdottoId());
+            statement.setInt(3, orderItem.getQuantita());
+            statement.setDouble(4, orderItem.getPrezzo());
+            return statement.executeUpdate() > 0;
         }
-        return false;
     }
 
     @Override
     public boolean doDelete(int id) throws SQLException {
-        String query = "DELETE FROM OrderItem WHERE id = ?";
+        String query = "DELETE FROM OrderItem WHERE OrderItemID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)){
-            statement.setLong(1, id);
+            statement.setInt(1, id);
             int rowsDeleted = statement.executeUpdate();
             return rowsDeleted > 0;
         }
