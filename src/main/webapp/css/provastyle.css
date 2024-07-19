@@ -154,3 +154,33 @@ footer {
 }
 
 /*FINE CSS PER FOOTER*/
+
+/*IDEA GALLERY*/
+.plant-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    background-color: #e0f7f9;
+}
+
+.plant-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 20px;
+    overflow: hidden;
+    text-align: center;
+    width: 250px;
+}
+
+.plant-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #e0f7f9;
+}
+
+.plant-card p {
+    margin: 15px;
+    font-size: 1em;
+}
