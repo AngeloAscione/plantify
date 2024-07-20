@@ -14,11 +14,11 @@ public class CarrelloBean implements Serializable {
         this.carrelloId = carrelloId;
     }
 
-    public int getUtenteid() {
+    public int getUtenteId() {
         return utenteId;
     }
 
-    public void setUtenteid(int utenteId) {
+    public void setUtenteId(int utenteId) {
         this.utenteId = utenteId;
     }
 }
