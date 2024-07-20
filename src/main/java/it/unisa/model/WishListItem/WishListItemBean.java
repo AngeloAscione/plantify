@@ -1,15 +1,15 @@
 package it.unisa.model.WishListItem;
 
 public class WishListItemBean{
-    private   int whishListItemId;
-    private  int prodottoId;
+    private int wishListItemId;
+    private int prodottoId;
 
-    public int getWhishListItemId() {
-        return whishListItemId;
+    public int getWishListItemId() {
+        return wishListItemId;
     }
 
-    public void setWhishListItemId(int whishListItemId) {
-        this.whishListItemId = whishListItemId;
+    public void setWishListItemId(int wishListItemId) {
+        this.wishListItemId = wishListItemId;
     }
 
     public int getProdottoId() {

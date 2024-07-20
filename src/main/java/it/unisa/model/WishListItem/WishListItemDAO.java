@@ -14,11 +14,11 @@ import java.util.List;
 public class WishListItemDAO implements DAOInterface<WishListItemBean> {
     @Override
     public WishListItemBean doRetrieveByKey(int id) throws SQLException {
-        String query = "SELECT * FROM WishList WHERE whishListItemId = ?";
+        String query = "SELECT * FROM WishlistItem WHERE WishlistID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, id);
-            try (ResultSet resultSet = statement.executeQuery()) {
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, id);
+            try (ResultSet resultSet = stm.executeQuery()) {
                 if (resultSet.next()) {
                     return extractWishListItemFromResultSet(resultSet);
                 }
@@ -27,53 +27,51 @@ public class WishListItemDAO implements DAOInterface<WishListItemBean> {
         return null;
     }
 
-    private WishListItemBean extractWishListItemFromResultSet(ResultSet resultSet) throws SQLException {
-        WishListItemBean wishListItemBean = new WishListItemBean();
-        wishListItemBean.setWhishListItemId(resultSet.getInt("whishListItemId"));
-        wishListItemBean.setProdottoId(resultSet.getInt("prodottoId"));
-        return wishListItemBean;
-    }
-
     @Override
     public Collection<WishListItemBean> doRetrieveAll() throws SQLException {
-        List<WishListItemBean> wishLists = new ArrayList<>();
-        String query = "SELECT * FROM WishListItem";
+        List<WishListItemBean> wishListItems = new ArrayList<>();
+        String query = "SELECT * FROM WishlistItem";
         try (Connection connection = DBConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
+             PreparedStatement stm = connection.prepareStatement(query);
+             ResultSet resultSet = stm.executeQuery()) {
             while (resultSet.next()) {
-                WishListItemBean wish = extractWishListItemFromResultSet(resultSet);
-                wishLists.add(wish);
+                wishListItems.add(extractWishListItemFromResultSet(resultSet));
             }
         }
-        return wishLists;
+        return wishListItems;
     }
 
     @Override
-    public boolean doSave(WishListItemBean obj) throws SQLException {
-        return false;
-    }
-
-    @Override
-    public boolean doUpdate(WishListItemBean obj) throws SQLException {
-        String query = "UPDATE WishList SET utenteId = ? WHERE wishListItemId = ?";
+    public boolean doSave(WishListItemBean wishListItem) throws SQLException {
+        String query = "INSERT INTO WishlistItem (WishlistID, ProdottoID) VALUES (?, ?)";
         try (Connection connection = DBConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, obj.getWhishListItemId());
-            statement.setLong(2, obj.getProdottoId());
-            statement.executeUpdate();
-
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, wishListItem.getWishListItemId());
+            stm.setInt(2, wishListItem.getProdottoId());
+            return stm.executeUpdate() > 0;
         }
-        return false;
     }
+
+    @Override
+    public boolean doUpdate(WishListItemBean wishListItem) throws SQLException {
+        // La struttura della tabella non consente aggiornamenti diretti, quindi questa operazione non è supportata
+        throw new UnsupportedOperationException("Update operation is not supported for WishlistItem.");
+    }
+
     @Override
     public boolean doDelete(int id) throws SQLException {
-        String query = "DELETE FROM WishListItem WHERE wishLisItemId = ?";
+        String query = "DELETE FROM WishlistItem WHERE WishlistID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, id);
-            int rowsDeleted = statement.executeUpdate();
-            return rowsDeleted > 0;
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, id);
+            return stm.executeUpdate() > 0;
         }
+    }
+
+    private WishListItemBean extractWishListItemFromResultSet(ResultSet resultSet) throws SQLException {
+        WishListItemBean wishListItem = new WishListItemBean();
+        wishListItem.setWishListItemId(resultSet.getInt("WishlistID"));
+        wishListItem.setProdottoId(resultSet.getInt("ProdottoID"));
+        return wishListItem;
     }
 }

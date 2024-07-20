@@ -1,6 +1,6 @@
 package it.unisa.model.utente;
 
-public class UserBean {
+public class UtenteBean {
 
     private int utenteId;
     private String nome;

@@ -12,13 +12,14 @@ import java.util.Collection;
 import java.util.List;
 
 public class WishListDAO implements DAOInterface<WishListBean>  {
+
     @Override
     public WishListBean doRetrieveByKey(int id) throws SQLException {
-        String query = "SELECT * FROM WishList WHERE wishListId = ?";
+        String query = "SELECT * FROM Wishlist WHERE WishlistID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query) ) {
-            statement.setLong(1, id);
-            try (ResultSet resultSet = statement.executeQuery()) {
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, id);
+            try (ResultSet resultSet = stm.executeQuery()) {
                 if (resultSet.next()) {
                     return extractWishListFromResultSet(resultSet);
                 }
@@ -27,53 +28,55 @@ public class WishListDAO implements DAOInterface<WishListBean>  {
         return null;
     }
 
-    private WishListBean extractWishListFromResultSet(ResultSet resultSet) throws SQLException {
-        WishListBean wish = new WishListBean();
-        wish.setWishListId(resultSet.getInt("wishListId"));
-        wish.setUtenteId(resultSet.getInt("utendeId"));
-        return wish;
-    }
-
     @Override
     public Collection<WishListBean> doRetrieveAll() throws SQLException {
-        List<WishListBean> wishLists = new ArrayList<>();
-        String query = "SELECT * FROM WishList";
+        List<WishListBean> wishlists = new ArrayList<>();
+        String query = "SELECT * FROM Wishlist";
         try (Connection connection = DBConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
+             PreparedStatement stm = connection.prepareStatement(query);
+             ResultSet resultSet = stm.executeQuery()) {
             while (resultSet.next()) {
-                WishListBean wish = extractWishListFromResultSet(resultSet);
-                wishLists.add(wish);
+                wishlists.add(extractWishListFromResultSet(resultSet));
             }
         }
-        return wishLists;
+        return wishlists;
     }
 
     @Override
-    public boolean doSave(WishListBean obj) throws SQLException {
-        return false;
-    }
-
-    @Override
-    public boolean doUpdate(WishListBean obj) throws SQLException {
-        String query = "UPDATE WishList SET utenteId = ? WHERE wishListId = ?";
+    public boolean doSave(WishListBean wishList) throws SQLException {
+        String query = "INSERT INTO Wishlist (UtenteID) VALUES (?)";
         try (Connection connection = DBConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, obj.getWishListId());
-            statement.setLong(2, obj.getUtenteId());
-            statement.executeUpdate();
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, wishList.getUtenteId());
+            return stm.executeUpdate() > 0;
         }
-        return false;
+    }
+
+    @Override
+    public boolean doUpdate(WishListBean wishList) throws SQLException {
+        String query = "UPDATE Wishlist SET UtenteID = ? WHERE WishlistID = ?";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, wishList.getUtenteId());
+            stm.setInt(2, wishList.getWishListId());
+            return stm.executeUpdate() > 0;
+        }
     }
 
     @Override
     public boolean doDelete(int id) throws SQLException {
-        String query = "DELETE FROM WishList WHERE wishListId = ?";
+        String query = "DELETE FROM Wishlist WHERE WishlistID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, id);
-            int rowsDeleted = statement.executeUpdate();
-            return rowsDeleted > 0;
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, id);
+            return stm.executeUpdate() > 0;
         }
+    }
+
+    private WishListBean extractWishListFromResultSet(ResultSet resultSet) throws SQLException {
+        WishListBean wishList = new WishListBean();
+        wishList.setWishListId(resultSet.getInt("WishlistID"));
+        wishList.setUtenteId(resultSet.getInt("UtenteID"));
+        return wishList;
     }
 }
