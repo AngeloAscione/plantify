@@ -92,13 +92,13 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean> {
 
         //TEST SAVE
         CarrelloBean cdb = new CarrelloBean();
-        cdb.setUtenteid(3);
+        cdb.setUtenteId(3);
         cd.doSave(cdb);
 
 
         //TEST UPDATE
         CarrelloBean update = new CarrelloBean();
-        update.setUtenteid(3);
+        update.setUtenteId(3);
         update.setCarrelloId(1);
         cd.doUpdate(update);
 
@@ -108,7 +108,7 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean> {
         //TEST RETRIEVEALL
         System.out.println("Testing retrieve all");
         for (CarrelloBean cb : cd.doRetrieveAll()){
-            System.out.println("CarrelloID: " + cb.getCarrelloId() + " UtenteID: " + cb.getUtenteid());
+            System.out.println("CarrelloID: " + cb.getCarrelloId() + " UtenteID: " + cb.getUtenteId());
         }
 
     }
