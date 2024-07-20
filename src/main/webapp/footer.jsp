@@ -5,7 +5,7 @@
   Time: 17:49
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +25,7 @@
                 <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
                 <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
             </div>
-            <p>© 2024 Plant Shop</p>
+            <p>Â© 2024 Plant Shop</p>
         </div>
         <div class="footer-right">
             <div class="footer-column">

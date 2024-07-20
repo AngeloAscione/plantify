@@ -2,6 +2,7 @@ package it.unisa.model.utente;
 
 import it.unisa.model.DAOInterface;
 import it.unisa.model.DBConnector;
+import it.unisa.utils.PasswordTool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class UtenteDao implements DAOInterface<UtenteBean> {
+public class UtenteDAO implements DAOInterface<UtenteBean> {
 
     @Override
     public UtenteBean doRetrieveByKey(int id) throws SQLException {
@@ -89,6 +90,21 @@ public class UtenteDao implements DAOInterface<UtenteBean> {
             stm.setInt(1, id);
             return stm.executeUpdate() > 0;
         }
+    }
+
+    public UtenteBean doRetrieveByEmailAndPassword(String email, String password) throws SQLException {
+        String query = "SELECT * FROM Utente WHERE Email = ? AND Password = ?";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setString(1, email);
+            stm.setString(2, PasswordTool.cipherPassword(password));
+            try (ResultSet resultSet = stm.executeQuery()) {
+                if (resultSet.next()) {
+                    return extractUtenteFromResultSet(resultSet);
+                }
+            }
+        }
+        return null;
     }
 
     private UtenteBean extractUtenteFromResultSet(ResultSet resultSet) throws SQLException {
