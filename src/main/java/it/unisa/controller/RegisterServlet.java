@@ -1,6 +1,7 @@
 package it.unisa.controller;
 
 import it.unisa.model.utente.UtenteBean;
+import it.unisa.model.utente.UtenteDAO;
 import it.unisa.utils.PasswordTool;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -35,6 +37,12 @@ public class RegisterServlet extends HttpServlet {
         if (PasswordTool.isValidPassword(ub.getPassword())){
             ub.setPassword(PasswordTool.cipherPassword(ub.getPassword()));
             address = "index.jsp";
+            UtenteDAO ud = new UtenteDAO();
+            try {
+                ud.doSave(ub);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             address = "register.jsp";
         }
