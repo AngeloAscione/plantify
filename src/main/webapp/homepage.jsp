@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="navbar.jsp" %>
 <html>
@@ -17,17 +18,23 @@
         <p>Easiest way to healthy life by buying your favorite plants</p>
         <button class="see-more">See more →</button>
 
-        <!--TODO rendere sensata questa parte di codice;
         <div class="plant-grid">
-        <c:forEach var="plant" items="${plants}">
-            <div class="plant-item">
-                <img src="${plant.imageUrl}" alt="${plant.name}">
-                <p>${plant.name}</p>
-                <p>₱ ${plant.price}</p>
-            </div>
-        </c:forEach>
-    </div>-->
-
+            <c:choose>
+                <c:when test="${not empty products}">
+                    <c:forEach var="product" items="${products}">
+                        <div class="plant-item">
+                            <img src="${product.foto}" alt="${product.nome}">
+                            <p>${product.nome}</p>
+                            <p>₱ ${product.prezzo}</p>
+                        </div>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <p>Nessun prodotto trovato.</p>
+                </c:otherwise>
+            </c:choose>
+        </div>
+<!--
         <div class="plant-grid">
             <div class="plant-item">
                 <img src="images/natural-plant.jpg" alt="Natural Plant">
@@ -39,12 +46,7 @@
                 <p>Artificial Plants</p>
                 <p>₱ 900.00</p>
             </div>
-            <div class="plant-item">
-                <img src="images/artificial-plant2.jpg" alt="Artificial Plant">
-                <p>Artificial Plants</p>
-                <p>₱ 3,500.00</p>
-            </div>
-        </div>
+        </div>-->
     </section>
 </main>
 

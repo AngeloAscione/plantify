@@ -15,7 +15,7 @@
 
             if (utente != null) {
                 session.setAttribute("utente", utente);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("homepage.jsp");
                 return;
             } else {
                 errorMessage = "Invalid email or password. Please try again.";

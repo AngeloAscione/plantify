@@ -36,7 +36,7 @@ public class RegisterServlet extends HttpServlet {
         String address;
         if (PasswordTool.isValidPassword(ub.getPassword())){
             ub.setPassword(PasswordTool.cipherPassword(ub.getPassword()));
-            address = "index.jsp";
+            address = "homepage.jsp";
             UtenteDAO ud = new UtenteDAO();
             try {
                 ud.doSave(ub);
