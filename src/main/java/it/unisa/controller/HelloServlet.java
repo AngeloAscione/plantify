@@ -8,7 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(value = "/init")
+@WebServlet(value = "/index.html")
 public class HelloServlet extends HttpServlet {
     private String message;
 
@@ -17,7 +17,7 @@ public class HelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         DBConnector.getInstance().setParameter("jdbc:mysql://bfpoyklzrtfcmj1mapbm-mysql.services.clever-cloud.com:3306/bfpoyklzrtfcmj1mapbm", "uy80mmnvr1uxpplr", "9vlC7RSQinwr6XkkMMdi");
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(request, response);
     }
 

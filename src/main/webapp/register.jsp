@@ -59,7 +59,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/form.css">
 </head>
 <body>
 <div class="register-container">
