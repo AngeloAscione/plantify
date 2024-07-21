@@ -1,61 +1,32 @@
-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 1rem; /* Padding di 16 pixel tutto intorno */
-    background-color: #c7f9cc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-}
-
-textarea {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #dddddd;
-    border-radius: 6px;
-    background: #f7f7f7;
-}
-
-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: #22577A;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-button:hover {
-    background-color: #22577A;
-    transform: translateY(-2px);
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9f5e9;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 .register-container {
+    margin: auto;
+    margin-top: 20px;
     background-color: #ffffff;
-    padding: 2rem;
+    padding: 1.5rem; /* Aumenta il padding per dare più spazio interno */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-width: 400px;
-    width: 100%;
+    max-width: 30%;
+    width: 80%;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .register-container h1 {
-    margin-bottom: 1rem;
-    color: #4CAF50;
+    margin-bottom: 0.5rem; /* Aumenta il margine inferiore per più spazio */
+    color: #38a3a5;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem; /* Aumenta il margine inferiore per più spazio */
     text-align: left;
 }
 
@@ -70,40 +41,40 @@ button:hover {
 .form-group input[type="password"],
 .form-group input[type="number"] {
     width: 100%;
-    padding: 0.75rem;
+    padding: 1rem; /* Aumenta il padding per ingrandire gli input */
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
 button {
-    padding: 0.75rem 2rem;
-    background-color: #4CAF50;
+    padding: 1rem; /* Aumenta il padding del bottone */
+    background-color: #38a3a5;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #80ed99;
 }
 
-.error-message {
-    color: #22577A;
-    margin-bottom: 1rem;
-}
 
 p {
     margin-top: 1.5rem;
 }
 
 p a {
-    color: #4CAF50;
+    color: #38a3a5;
     text-decoration: none;
 }
 
 p a:hover {
     text-decoration: underline;
+    color: #80ed99;
 }
+
+
+
+

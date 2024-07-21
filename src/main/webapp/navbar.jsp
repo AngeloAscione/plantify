@@ -1,11 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-
-<head>
-    <link rel="stylesheet" href="css/provastyle.css">
-</head>
-<body>
 <nav class="navbar">
+    <link rel="stylesheet" href="css/provastyle.css">
     <div class="logo">
         <img src="logo.png" alt="Plantify Logo">
     </div>
@@ -27,5 +22,3 @@
         </div>
     </div>
 </nav>
-</body>
-</html>

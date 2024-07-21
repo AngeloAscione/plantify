@@ -4,6 +4,7 @@
 <%@ page import="it.unisa.model.utente.UtenteBean" %>
 <%@ page import="it.unisa.model.utente.UtenteDAO" %>
 <%@ page import="it.unisa.utils.PasswordTool" %>
+<%@ include file="navbar.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
