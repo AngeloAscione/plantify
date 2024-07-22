@@ -6,9 +6,11 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/notification.css">
 </head>
 <body>
-<div class="register-container">
+<div id="notification"></div>
+<div class="container" >
     <h1>Register</h1>
     <form action="register" method="post">
         <div class="form-group">
@@ -50,13 +52,15 @@
         Integer passNotValid = (Integer) request.getAttribute("passwordNotValid");
         Integer emailTaken = (Integer) request.getAttribute("emailTaken");
         if (passNotValid != null && passNotValid == 1){ %>
-            <div>
-                <p style="color: red; font-size: 24px"> Password non valida </p>
-            </div>
+            <script type="module">
+                import {showNotification} from "./scripts/notification.js";
+                showNotification("Password errata","error");
+            </script>
         <% } else if (emailTaken != null && emailTaken == 1){ %>
-            <div>
-                <p style="color: red; font-size: 24px"> Email già registrata, prova ad effettuare il login </p>
-            </div>
+            <script type="module">
+                import {showNotification} from "./scripts/notification.js";
+                showNotification("Email già registrata","error");
+            </script>
         <% } %>
     </form>
     <p>Already have an account? <a href="login.jsp">Login here</a>.</p>

@@ -31,10 +31,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/notification.css">
 </head>
 <body>
-<div class="login-container">
+<div id="notification"></div>
+<div class="container">
     <h1>Login</h1>
     <% if (errorMessage != null) { %>
     <div class="error-message"><%= errorMessage %></div>

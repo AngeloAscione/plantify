@@ -6,7 +6,7 @@ body {
     padding: 0;
 }
 
-.register-container {
+.container {
     margin: auto;
     margin-top: 20px;
     background-color: #ffffff;
@@ -20,7 +20,7 @@ body {
     align-items: center;
 }
 
-.register-container h1 {
+.container h1 {
     margin-bottom: 0.5rem; /* Aumenta il margine inferiore per più spazio */
     color: #38a3a5;
 }

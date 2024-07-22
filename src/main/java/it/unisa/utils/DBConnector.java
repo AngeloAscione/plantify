@@ -46,8 +46,8 @@ public class DBConnector {
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
             p.setUsername(username);
             p.setPassword(passwd);
-            p.setMaxActive(5);
-            p.setMaxIdle(5);
+            p.setMaxActive(1);
+            p.setMaxIdle(1);
             p.setInitialSize(1);
             p.setMinIdle(4);
             p.setRemoveAbandonedTimeout(60);
