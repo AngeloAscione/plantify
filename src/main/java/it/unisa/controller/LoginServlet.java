@@ -1,5 +1,8 @@
 package it.unisa.controller;
 
+import it.unisa.model.utente.UtenteBean;
+import it.unisa.model.utente.UtenteDAO;
+import it.unisa.utils.PasswordTool;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -18,8 +22,30 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UtenteDAO utenteDAO = new UtenteDAO();
+        String loginEmail = req.getParameter("email");
+        String address;
+        try {
+            UtenteBean ub = utenteDAO.doRetrieveByEmail(loginEmail);
+            if (ub != null){
+                String loginPasswod = req.getParameter("password");
+                if (PasswordTool.cipherPassword(loginPasswod) == ub.getPassword()){
+                    address = "homepage.jsp";
+                } else {
+                    address = "login.jsp";
+                    req.setAttribute("passwordNotValid", 1);
+                }
+            } else {
+                address = "login.jsp";
+                req.setAttribute("emailNotValid", 1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(address);
+        requestDispatcher.forward(req, resp);
     }
 
     @Override

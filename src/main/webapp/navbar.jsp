@@ -2,7 +2,7 @@
 <nav class="navbar">
     <link rel="stylesheet" href="css/provastyle.css">
     <div class="logo">
-        <img src="logo.png" alt="Plantify Logo">
+        <img src="images/logo.jpg" alt="Plantify Logo">
     </div>
     <ul class="nav-links">
         <li><a href="#">Home</a></li>
@@ -12,8 +12,8 @@
         <li><a href="register.jsp">Sign up</a></li>
     </ul>
     <div class="nav-icons">
-        <a href="#"><img src="cart-icon.png" alt="Cart"></a>
-        <a href="#"><img src="user-icon.png" alt="User"></a>
+        <a href="#"><img src="images/cart.jpg" alt="Cart"></a>
+        <a href="#"><img src="images/user.jpg" alt="User"></a>
         <span class="divider"></span>
         <!--mi piace di più la barra rispetto al menu -->
         <div class="search-container">
