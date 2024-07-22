@@ -4,16 +4,14 @@
     <div class="logo">
         <img src="images/logo.jpg" alt="Plantify Logo">
     </div>
+
     <ul class="nav-links">
         <li><a href="homepage.jsp">Home</a></li>
         <li><a href="products.jsp">Products</a></li>
-        <!--
-        <li><a href="login.jsp">Sign in</a></li>
-        <li><a href="register.jsp">Sign up</a></li>
     </ul>
     <div class="nav-icons">
         <a href="cart.jsp"><img src="images/cart.jpg" alt="Cart"></a>
-        <!-- gestione da accedi o registrati-->
+       <!-- gestione da accedi o registrati-->
         <div class="toggle-buttons">
             <button class="btn sign-up"><a class="btn-text-up" href="register.jsp">Sign Up</a></button>
             <button class="btn log-in"><a class="btn-text-in" href="login.jsp">Log in</a></button>

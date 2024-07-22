@@ -24,11 +24,15 @@ body {
 
 .nav-links li a {
     text-decoration: none;
-    color: grey;
+    color: #38a3a5;
     font-size: 16px;
     font-weight: bold;
 }
 
+
+.nav-links li a:hover {
+    color: #c7f9cc;
+}
 
 .nav-icons {
     display: flex;
@@ -58,7 +62,6 @@ body {
     align-items: center;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     padding: 5px 10px;
 }
 
