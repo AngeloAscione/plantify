@@ -2,12 +2,12 @@
 <nav class="navbar">
     <link rel="stylesheet" href="css/provastyle.css">
     <div class="logo">
-        <img src="images/logo.jpg" alt="Plantify Logo">
+        <a href="homepage.jsp"><img src="images/logo.jpg" alt="Plantify Logo"></a>
     </div>
     <ul class="nav-links">
         <li><a href="homepage.jsp">Home</a></li>
-        <li><a href="products.jsp">Products</a></li>
-        <!--
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Contacts</a></li>
         <li><a href="login.jsp">Sign in</a></li>
         <li><a href="register.jsp">Sign up</a></li>-->
     </ul>
