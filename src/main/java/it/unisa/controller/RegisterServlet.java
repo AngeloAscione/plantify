@@ -46,7 +46,7 @@ public class RegisterServlet extends HttpServlet {
                     HttpSession session = req.getSession(true);
                     synchronized (session) {
                         session.setAttribute("UserInfo", ub);
-                        session.setAttribute("logged", 1);                    }
+                        session.setAttribute("logged", true);                    }
                 } else {
                     address = "register.jsp";
                     req.setAttribute("emailTaken", 1);

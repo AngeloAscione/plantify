@@ -31,12 +31,12 @@ public class LoginServlet extends HttpServlet {
             UtenteBean ub = utenteDAO.doRetrieveByEmail(loginEmail);
             if (ub != null){
                 String loginPassword = req.getParameter("password");
-                if (PasswordTool.cipherPassword(loginPassword) == ub.getPassword()){
+                if (PasswordTool.cipherPassword(loginPassword).equals(ub.getPassword())){
                     address = "homepage.jsp";
                     HttpSession session = req.getSession(true);
                     synchronized (session) {
                         session.setAttribute("UserInfo", ub);
-                        session.setAttribute("logged", 1);
+                        session.setAttribute("logged", true);
                     }
                 } else {
                     address = "login.jsp";
