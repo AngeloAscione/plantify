@@ -91,4 +91,23 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean> {
         prodotto.setFoto(resultSet.getString("Foto"));
         return prodotto;
     }
+
+    public List<ProdottoBean> searchProduct(String titolo) {
+        List<ProdottoBean> prodottoBeans = new ArrayList<>();
+        String query = "SELECT * FROM Prodotto WHERE LOWER(Nome) LIKE LOWER(?) LIMIT 5";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setString(1, "%" + titolo + "%");
+            try (ResultSet resultSet = stm.executeQuery()) {
+                while (resultSet.next()) {
+                    prodottoBeans.add(extractProdottoFromResultSet(resultSet));
+
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return prodottoBeans;
+    }
 }
+

@@ -16,14 +16,5 @@
             <a class="btn-text-up" href="register.jsp"><button class="btn sign-up">Sign Up</button></a>
             <a class="btn-text-in" href="login.jsp"><button class="btn log-in">Log in</button></a>
         </div>
-
-        <span class="divider"></span>
-        <!--mi piace di più la barra rispetto al menu -->
-        <div class="search-container">
-            <input type="text" placeholder="Cosa stai cercando?" class="search-input">
-            <button class="search-button">
-                <img src="search-icon.png" alt="Search">
-            </button>
-        </div>
     </div>
 </nav>
