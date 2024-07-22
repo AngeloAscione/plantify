@@ -12,7 +12,6 @@ public class UtenteBean {
     private int cap;
     private String telefono;
     private boolean isAdmin;
-    private boolean logged;
 
     public int getUtenteId() {
         return utenteId;
@@ -92,13 +91,5 @@ public class UtenteBean {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
-    }
-
-    public boolean isLogged() {
-        return logged;
-    }
-
-    public void setLogged(boolean logged) {
-        this.logged = logged;
     }
 }

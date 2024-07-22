@@ -58,7 +58,7 @@ public class UtenteDAO implements DAOInterface<UtenteBean> {
 
     @Override
     public boolean doSave(UtenteBean utente) throws SQLException {
-        String query = "INSERT INTO Utente (Nome, Cognome, Email, Password, Via, Civico, CAP, Telefono, IsAdmin, Loggato) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Utente (Nome, Cognome, Email, Password, Via, Civico, CAP, Telefono, IsAdmin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement stm = connection.prepareStatement(query)) {
             stm.setString(1, utente.getNome());
@@ -70,14 +70,13 @@ public class UtenteDAO implements DAOInterface<UtenteBean> {
             stm.setInt(7, utente.getCap());
             stm.setString(8, utente.getTelefono());
             stm.setBoolean(9, utente.isAdmin());
-            stm.setBoolean(10, utente.isLogged());
             return stm.executeUpdate() > 0;
         }
     }
 
     @Override
     public boolean doUpdate(UtenteBean utente) throws SQLException {
-        String query = "UPDATE Utente SET Nome = ?, Cognome = ?, Email = ?, Password = ?, Via = ?, Civico = ?, CAP = ?, Telefono = ?, IsAdmin = ?, Loggato = ? WHERE UtenteID = ?";
+        String query = "UPDATE Utente SET Nome = ?, Cognome = ?, Email = ?, Password = ?, Via = ?, Civico = ?, CAP = ?, Telefono = ?, IsAdmin = ? WHERE UtenteID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement stm = connection.prepareStatement(query)) {
             stm.setString(1, utente.getNome());
@@ -89,8 +88,7 @@ public class UtenteDAO implements DAOInterface<UtenteBean> {
             stm.setInt(7, utente.getCap());
             stm.setString(8, utente.getTelefono());
             stm.setBoolean(9, utente.isAdmin());
-            stm.setBoolean(10, utente.isLogged());
-            stm.setInt(11, utente.getUtenteId());
+            stm.setInt(10, utente.getUtenteId());
             return stm.executeUpdate() > 0;
         }
     }
@@ -132,8 +130,21 @@ public class UtenteDAO implements DAOInterface<UtenteBean> {
         utente.setCap(resultSet.getInt("CAP"));
         utente.setTelefono(resultSet.getString("Telefono"));
         utente.setAdmin(resultSet.getBoolean("IsAdmin"));
-        utente.setLogged(resultSet.getBoolean("Loggato"));
         return utente;
     }
+
+    public boolean isAdmin(int id) throws SQLException{
+        String query = "SELECT IsAdmin from Utente where UtenteID = ?";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+        PreparedStatement stm = connection.prepareStatement(query)){
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()){
+                return rs.getBoolean("IsAdmin");
+            }
+        }
+        return false;
+    }
+
 
 }

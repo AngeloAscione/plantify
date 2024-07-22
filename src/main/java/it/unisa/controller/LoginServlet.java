@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,9 +30,13 @@ public class LoginServlet extends HttpServlet {
         try {
             UtenteBean ub = utenteDAO.doRetrieveByEmail(loginEmail);
             if (ub != null){
-                String loginPasswod = req.getParameter("password");
-                if (PasswordTool.cipherPassword(loginPasswod) == ub.getPassword()){
+                String loginPassword = req.getParameter("password");
+                if (PasswordTool.cipherPassword(loginPassword) == ub.getPassword()){
                     address = "homepage.jsp";
+                    HttpSession session = req.getSession(true);
+                    synchronized (session) {
+                        session.setAttribute("UserInfo", ub);
+                    }
                 } else {
                     address = "login.jsp";
                     req.setAttribute("passwordNotValid", 1);
