@@ -31,9 +31,7 @@
 }
 
 .search-button {
-    font-size: 858px;
     border: none;
-    background-color: black;
     border-radius: 0 25px 25px 0;
     padding: 10px 15px;
     cursor: pointer;
@@ -44,12 +42,12 @@
 .resultBox {
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 100%;
+    left: 8px;
+    width: 80%;
     background-color: #fff;
     border: 1px solid #ccc;
     border-top: none; /* Rimuovi il bordo superiore per collegarlo visivamente alla barra di ricerca */
-    border-radius: 0 0 5px 5px;
+    border-radius:35px;
     z-index: 1000;
 }
 

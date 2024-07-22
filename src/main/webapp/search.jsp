@@ -7,7 +7,7 @@
     <form  class="search-form" onsubmit="return false;">
         <input class="search-input" type="search" placeholder="Cerca..." aria-label="Search">
         <button class="search-button">
-            <i class="fas fa-search"></i>
+            <img src="images/search.jpg">
         </button>
         <div class="resultBox">
         </div>

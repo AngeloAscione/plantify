@@ -11,9 +11,8 @@
 </head>
 <body>
 <header class="header">
-        <div class="header-text">
-            <h1>Compra le tue piante preferite</h1>
-            <!--mi piace di più la barra rispetto al menu -->
+        <div class="conteiner-header">
+            <h1 class="header-text-h1">Compra le tue piante preferite</h1>
             <%@ include file="search.jsp" %>
         </div>
 </header>
