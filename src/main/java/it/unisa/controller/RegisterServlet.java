@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @WebServlet(name = "RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -39,12 +40,18 @@ public class RegisterServlet extends HttpServlet {
             address = "homepage.jsp";
             UtenteDAO ud = new UtenteDAO();
             try {
-                ud.doSave(ub);
+                if (ud.doRetrieveByEmail(ub.getEmail()) == null){
+                    ud.doSave(ub);
+                } else {
+                    address = "register.jsp";
+                    req.setAttribute("emailTaken", 1);
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         } else {
             address = "register.jsp";
+            req.setAttribute("passwordNotValid", 1);
         }
 
 

@@ -1,9 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="it.unisa.model.DBConnector" %>
-<%@ page import="it.unisa.model.utente.UtenteBean" %>
-<%@ page import="it.unisa.model.utente.UtenteDAO" %>
-<%@ page import="it.unisa.utils.PasswordTool" %>
 <%@ include file="navbar.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +25,9 @@
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password"
+                   pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?&quot;:{}|<>])[A-Za-z\d!@#$%^&*(),.?&quot;:{}|&lt;&gt;]{8,16}$"
+                   title="La password deve essere tra 8 e 16 caratteri e contenere almeno una lettera maiuscola, un numero e un carattere speciale." required>
         </div>
         <div class="form-group">
             <label for="via">Via:</label>
@@ -49,6 +46,18 @@
             <input type="text" id="telefono" name="telefono" required>
         </div>
         <button type="submit">Register</button>
+        <%
+        Integer passNotValid = (Integer) request.getAttribute("passwordNotValid");
+        Integer emailTaken = (Integer) request.getAttribute("emailTaken");
+        if (passNotValid != null && passNotValid == 1){ %>
+            <div>
+                <p style="color: red; font-size: 24px"> Password non valida </p>
+            </div>
+        <% } else if (emailTaken != null && emailTaken == 1){ %>
+            <div>
+                <p style="color: red; font-size: 24px"> Email già registrata, prova ad effettuare il login </p>
+            </div>
+        <% } %>
     </form>
     <p>Already have an account? <a href="login.jsp">Login here</a>.</p>
 </div>

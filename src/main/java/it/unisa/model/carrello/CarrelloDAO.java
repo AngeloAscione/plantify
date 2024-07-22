@@ -1,7 +1,7 @@
 package it.unisa.model.carrello;
 
 import it.unisa.model.DAOInterface;
-import it.unisa.model.DBConnector;
+import it.unisa.utils.DBConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -82,7 +82,6 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean> {
     //TEST DELLA DAO
     public static void main(String ... args) throws SQLException {
 
-        DBConnector.getInstance().setParameter("jdbc:mysql://bfpoyklzrtfcmj1mapbm-mysql.services.clever-cloud.com:3306/bfpoyklzrtfcmj1mapbm", "uy80mmnvr1uxpplr", "9vlC7RSQinwr6XkkMMdi");
         CarrelloDAO cd = new CarrelloDAO();
 
 

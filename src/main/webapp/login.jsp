@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="it.unisa.model.DBConnector" %>
+<%@ page import="it.unisa.utils.DBConnector" %>
 <%@ page import="it.unisa.model.utente.UtenteBean" %>
 <%@ page import="it.unisa.model.utente.UtenteDAO" %>
 <%

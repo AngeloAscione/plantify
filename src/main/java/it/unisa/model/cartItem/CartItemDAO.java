@@ -1,8 +1,7 @@
 package it.unisa.model.cartItem;
 
 import it.unisa.model.DAOInterface;
-import it.unisa.model.DBConnector;
-import it.unisa.model.carrello.CarrelloBean;
+import it.unisa.utils.DBConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

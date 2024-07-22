@@ -8,6 +8,8 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">Products</a></li>
         <li><a href="#">Contacts</a></li>
+        <li><a href="login.jsp">Sign in</a></li>
+        <li><a href="register.jsp">Sign up</a></li>
     </ul>
     <div class="nav-icons">
         <a href="#"><img src="cart-icon.png" alt="Cart"></a>

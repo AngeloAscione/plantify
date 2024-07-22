@@ -1,7 +1,7 @@
 package it.unisa.model.utente;
 
 import it.unisa.model.DAOInterface;
-import it.unisa.model.DBConnector;
+import it.unisa.utils.DBConnector;
 import it.unisa.utils.PasswordTool;
 
 import java.sql.Connection;
@@ -41,6 +41,19 @@ public class UtenteDAO implements DAOInterface<UtenteBean> {
             }
         }
         return utenti;
+    }
+
+    public UtenteBean doRetrieveByEmail(String email) throws SQLException{
+        String query = "SELECT * FROM Utente where Email = ?";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+        PreparedStatement stm = connection.prepareStatement(query)){
+            stm.setString(1, email);
+            ResultSet resultSet = stm.executeQuery();
+            if (resultSet.next()){
+                return extractUtenteFromResultSet(resultSet);
+            }
+        }
+        return null;
     }
 
     @Override

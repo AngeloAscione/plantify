@@ -1,7 +1,7 @@
 package it.unisa.model.prodotto;
 
 import it.unisa.model.DAOInterface;
-import it.unisa.model.DBConnector;
+import it.unisa.utils.DBConnector;
 
 import java.sql.*;
 import java.util.ArrayList;
