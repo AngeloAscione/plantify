@@ -58,7 +58,8 @@ public class RegisterServlet extends HttpServlet {
             address = "register.jsp";
             req.setAttribute("passwordNotValid", 1);
         }
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(address);
-        requestDispatcher.forward(req, resp);
+        resp.sendRedirect(address);
+//        RequestDispatcher requestDispatcher = req.getRequestDispatcher(address);
+//        requestDispatcher.forward(req, resp);
     }
 }

@@ -50,8 +50,9 @@ public class LoginServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(address);
-        requestDispatcher.forward(req, resp);
+        resp.sendRedirect("homepage.jsp");
+//        RequestDispatcher requestDispatcher = req.getRequestDispatcher(address);
+//        requestDispatcher.forward(req, resp);
     }
 
     @Override

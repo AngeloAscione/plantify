@@ -22,8 +22,6 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
-        session.setAttribute("logged", false);
         req.getRequestDispatcher("/homepage.jsp").forward(req, resp);
     }
 }

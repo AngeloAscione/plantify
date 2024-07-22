@@ -20,7 +20,7 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String type = req.getParameter("requestType");
+        String type = req.getParameter("type");
         UtenteDAO utenteDAO = new UtenteDAO();
         String address = "products.jsp";
         try {

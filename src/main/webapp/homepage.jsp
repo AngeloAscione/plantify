@@ -6,7 +6,7 @@
 <%@ include file="navbar.jsp" %>
 <html>
 <head>
-    <title>Sezione Piante</title>
+    <title>Plantify - Homepage</title>
     <link rel="stylesheet" href="css/homepage.css">
 </head>
 <body>
