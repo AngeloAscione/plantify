@@ -103,20 +103,20 @@ public class UtenteDAO implements DAOInterface<UtenteBean> {
         }
     }
 
-    public UtenteBean doRetrieveByEmailAndPassword(String email, String password) throws SQLException {
-        String query = "SELECT * FROM Utente WHERE Email = ? AND Password = ?";
-        try (Connection connection = DBConnector.getInstance().getConnection();
-             PreparedStatement stm = connection.prepareStatement(query)) {
-            stm.setString(1, email);
-            stm.setString(2, PasswordTool.cipherPassword(password));
-            try (ResultSet resultSet = stm.executeQuery()) {
-                if (resultSet.next()) {
-                    return extractUtenteFromResultSet(resultSet);
-                }
-            }
-        }
-        return null;
-    }
+//    public UtenteBean doRetrieveByEmailAndPassword(String email, String password) throws SQLException {
+//        String query = "SELECT * FROM Utente WHERE Email = ? AND Password = ?";
+//        try (Connection connection = DBConnector.getInstance().getConnection();
+//             PreparedStatement stm = connection.prepareStatement(query)) {
+//            stm.setString(1, email);
+//            stm.setString(2, PasswordTool.cipherPassword(password));
+//            try (ResultSet resultSet = stm.executeQuery()) {
+//                if (resultSet.next()) {
+//                    return extractUtenteFromResultSet(resultSet);
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
     private UtenteBean extractUtenteFromResultSet(ResultSet resultSet) throws SQLException {
         UtenteBean utente = new UtenteBean();

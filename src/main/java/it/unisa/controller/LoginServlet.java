@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
                     HttpSession session = req.getSession(true);
                     synchronized (session) {
                         session.setAttribute("UserInfo", ub);
+                        session.setAttribute("logged", 1);
                     }
                 } else {
                     address = "login.jsp";

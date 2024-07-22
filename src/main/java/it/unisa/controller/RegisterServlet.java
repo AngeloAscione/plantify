@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -41,6 +42,11 @@ public class RegisterServlet extends HttpServlet {
             try {
                 if (ud.doRetrieveByEmail(ub.getEmail()) == null){
                     ud.doSave(ub);
+                    ub = ud.doRetrieveByEmail(ub.getEmail());
+                    HttpSession session = req.getSession(true);
+                    synchronized (session) {
+                        session.setAttribute("UserInfo", ub);
+                        session.setAttribute("logged", 1);                    }
                 } else {
                     address = "register.jsp";
                     req.setAttribute("emailTaken", 1);

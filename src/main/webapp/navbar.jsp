@@ -13,8 +13,8 @@
         <a href="cart.jsp"><img src="images/cart.jpg" alt="Cart"></a>
        <!-- gestione da accedi o registrati-->
         <div class="toggle-buttons">
-            <button class="btn sign-up"><a class="btn-text-up" href="register.jsp">Sign Up</a></button>
-            <button class="btn log-in"><a class="btn-text-in" href="login.jsp">Log in</a></button>
+            <a class="btn-text-up" href="register.jsp"><button class="btn sign-up">Sign Up</button></a>
+            <a class="btn-text-in" href="login.jsp"><button class="btn log-in">Log in</button></a>
         </div>
 
         <span class="divider"></span>
