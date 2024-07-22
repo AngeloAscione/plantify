@@ -190,3 +190,44 @@ footer {
     margin: 15px;
     font-size: 1em;
 }
+
+.toggle-buttons {
+    display: flex;
+    border-radius: 25px;
+    overflow: hidden;
+}
+.btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.sign-up {
+    background-color: #57cc99;
+    color: white;
+}
+
+.log-in {
+    background-color: #c7f9cc;
+}
+
+.sign-up:hover {
+    background-color: #218838;
+}
+
+.log-in:hover {
+    background-color: #d4e8d4;
+}
+
+.btn-text-in{
+    text-decoration: none;
+    color:black;
+}
+
+.btn-text-up{
+    text-decoration: none;
+    color:white;
+}

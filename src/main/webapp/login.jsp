@@ -2,6 +2,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="it.unisa.model.utente.UtenteBean" %>
 <%@ page import="it.unisa.model.utente.UtenteDAO" %>
+<%@ include file="navbar.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
 </head>
 <body>
 <div id="notification"></div>
-<div class="container">
+<div class="container-form">
     <h1>Login</h1>
     <form action="login" method="post">
         <div class="form-group">

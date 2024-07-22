@@ -1,16 +1,16 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e9f5e9;
+    background-color: #e9f5e9; /* Sfondo verde chiaro */
     color: #333;
     margin: 0;
     padding: 0;
 }
 
-.container {
+.container-form {
     margin: auto;
     margin-top: 20px;
     background-color: #ffffff;
-    padding: 1.5rem; /* Aumenta il padding per dare più spazio interno */
+    padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     max-width: 30%;
@@ -20,13 +20,13 @@ body {
     align-items: center;
 }
 
-.container h1 {
-    margin-bottom: 0.5rem; /* Aumenta il margine inferiore per più spazio */
+.container-form h1 {
+    margin-bottom: 0.5rem;
     color: #38a3a5;
 }
 
 .form-group {
-    margin-bottom: 1rem; /* Aumenta il margine inferiore per più spazio */
+    margin-bottom: 1rem;
     text-align: left;
 }
 
@@ -41,7 +41,7 @@ body {
 .form-group input[type="password"],
 .form-group input[type="number"] {
     width: 100%;
-    padding: 1rem; /* Aumenta il padding per ingrandire gli input */
+    padding: 0.75rem; /* Aumenta il padding per ingrandire gli input */
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
@@ -60,7 +60,6 @@ button:hover {
     background-color: #80ed99;
 }
 
-
 p {
     margin-top: 1.5rem;
 }
@@ -74,7 +73,3 @@ p a:hover {
     text-decoration: underline;
     color: #80ed99;
 }
-
-
-
-

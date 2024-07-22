@@ -10,7 +10,8 @@
 </head>
 <body>
 <div id="notification"></div>
-<div class="container" >
+
+<div class="container-form" >
     <h1>Register</h1>
     <form action="register" method="post">
         <div class="form-group">
@@ -65,5 +66,6 @@
     </form>
     <p>Already have an account? <a href="login.jsp">Login here</a>.</p>
 </div>
+
 </body>
 </html>

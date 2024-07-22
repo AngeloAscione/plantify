@@ -2,7 +2,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="it.unisa.model.prodotto.ProdottoDAO" %>
 <%@ page import="java.util.Collection" %>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="navbar.jsp" %>
 <html>

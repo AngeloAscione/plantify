@@ -5,15 +5,20 @@
         <img src="images/logo.jpg" alt="Plantify Logo">
     </div>
     <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Contacts</a></li>
+        <li><a href="homepage.jsp">Home</a></li>
+        <li><a href="products.jsp">Products</a></li>
+        <!--
         <li><a href="login.jsp">Sign in</a></li>
-        <li><a href="register.jsp">Sign up</a></li>
+        <li><a href="register.jsp">Sign up</a></li>-->
     </ul>
     <div class="nav-icons">
-        <a href="#"><img src="images/cart.jpg" alt="Cart"></a>
-        <a href="#"><img src="images/user.jpg" alt="User"></a>
+        <a href="cart.jsp"><img src="images/cart.jpg" alt="Cart"></a>
+        <!-- gestione da accedi o registrati-->
+        <div class="toggle-buttons">
+            <button class="btn sign-up"><a class="btn-text-up" href="register.jsp">Sign Up</a></button>
+            <button class="btn log-in"><a class="btn-text-in" href="login.jsp">Log in</a></button>
+        </div>
+
         <span class="divider"></span>
         <!--mi piace di più la barra rispetto al menu -->
         <div class="search-container">
