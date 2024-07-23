@@ -1,7 +1,3 @@
-<%@ page import="it.unisa.model.prodotto.ProdottoBean" %>
-<%@ page import="java.util.List" %>
-<%@ page import="it.unisa.model.prodotto.ProdottoDAO" %>
-<%@ page import="java.util.Collection" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="navbar.jsp" %>
 <html>

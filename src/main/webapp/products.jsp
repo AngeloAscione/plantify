@@ -7,12 +7,18 @@
     <head>
         <title>Plantify - Prodotti</title>
         <link rel="stylesheet" href="css/homepage.css">
+
+        <script>
+            function sendSubmit(name){
+                document.getElementById(name).submit()
+            }
+        </script>
+
     </head>
     <body>
 
 <!-- gestione prodotti-->
-
-<%@ include file="printProducts.jsp" %>
-<%@ include file="footer.jsp" %>
-</body>
+        <%@ include file="printProducts.jsp"%>
+        <%@ include file="footer.jsp" %>
+    </body>
 </html>

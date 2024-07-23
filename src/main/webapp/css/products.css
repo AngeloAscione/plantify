@@ -36,3 +36,39 @@ a{
     text-decoration: none;
 }
 
+.info-container {
+    display: flex;
+    align-items: center; /* Allinea verticalmente al centro */
+    justify-content: space-between; /* Spazio tra gli elementi */
+    background-color: #f0f8e4; /* Colore di sfondo, simile a quello dell'immagine */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column; /* Dispone il nome del prodotto e il prezzo uno sotto l'altro */
+}
+
+.add-to-cart {
+    margin-left: 20px; /* Spazio tra il testo e il pulsante */
+    background-color: #2f8f2f;
+    outline: none;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    appearance: none; /* Rimuove lo stile predefinito del browser */
+    -webkit-appearance: none; /* Rimuove lo stile predefinito del browser su Webkit */
+    -moz-appearance: none; /* Rimuove lo stile predefinito del browser su Firefox */
+}
+
+.add-to-cart:hover {
+    background-color: #276b27;
+}

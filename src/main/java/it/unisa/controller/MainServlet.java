@@ -1,7 +1,6 @@
 package it.unisa.controller;
 
-import it.unisa.model.prodotto.ProdottoBean;
-import it.unisa.model.prodotto.ProdottoDAO;
+import it.unisa.model.cartItem.CartItemBean;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,8 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @WebServlet("/index.html")
 public class MainServlet extends HttpServlet {
@@ -22,6 +22,14 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        HttpSession session = req.getSession(true);
+        synchronized (session) {
+            if ((List<CartItemBean>) session.getAttribute("cart") == null) {
+                session.setAttribute("cart", new ArrayList<CartItemBean>());
+            }
+        }
+
         req.getRequestDispatcher("/homepage.jsp").forward(req, resp);
     }
 }

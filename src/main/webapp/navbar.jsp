@@ -2,7 +2,7 @@
 <nav class="navbar">
     <link rel="stylesheet" href="css/provastyle.css">
     <div class="logo">
-        <img src="images/logo.jpg" alt="Plantify Logo">
+        <a href="homepage.jsp"><img src="images/logo.jpg" alt="Plantify Logo"></a>
     </div>
 
     <ul class="nav-links">

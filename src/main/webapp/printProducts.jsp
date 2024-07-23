@@ -16,13 +16,20 @@
             Collection<ProdottoBean> prodotti = new ProdottoDAO().doRetrieveAll();
             if (prodotti != null && prodotti.size() > 0){
                 for(ProdottoBean pb : prodotti){ %>
-                    <a href="product?prodottoId=<%=pb.getProdottoId()%>">
                         <div class="plant-item">
-                            <img src="<%=pb.getFoto()%>" alt="<%=pb.getNome()%>">
-                            <p> <%=pb.getNome()%> </p>
-                            <p> € <%=pb.getPrezzo()%> </p>
+                            <a href="product?prodottoId=<%=pb.getProdottoId()%>">
+                                <img src="<%=pb.getFoto()%>" alt="<%=pb.getNome()%>">
+                            </a>
+                            <div class="info-container">
+                                <div class="info">
+                                    <p> <%=pb.getNome()%> </p>
+                                    <p> € <%=pb.getPrezzo()%> </p>
+                                </div>
+                                <div class="add-to-cart">
+                                    <button onclick="addToCart(<%= pb.getProdottoId() %>)">Aggiungi al carrello</button>
+                                </div>
+                            </div>
                         </div>
-                    </a>
                 <% }
             } else { %>
                 <p>Nessun prodotto trovato</p>
