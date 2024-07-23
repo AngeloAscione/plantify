@@ -16,12 +16,7 @@
             <%@ include file="search.jsp" %>
         </div>
 </header>
-<main>
-    <section class="best-selling">
-        <%@ include file="printProducts.jsp" %>
-    </section>
-</main>
-
+<%@ include file="printProducts.jsp"%>
 <%@ include file="footer.jsp" %>
 </body>
 </html>
