@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="notification"></div>
-
+<script type="module" src="scripts/notification.js"></script>
 <div class="container-form" >
     <h1>Register</h1>
     <form action="register" method="post">
