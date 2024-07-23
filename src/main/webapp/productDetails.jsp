@@ -16,9 +16,9 @@
 <body>
 
 
-<div class="card-prodotto" style="display: grid; grid-column: auto">
+<div class="card-prodotto">
   <div class="image-prodotto">
-    <img src="${productDetails.foto}" style="width: 200px; height: auto" >
+    <img src="${productDetails.foto}" >
   </div>
   <div class="info-prodotto">
     <h1>${productDetails.nome}</h1>
@@ -50,8 +50,8 @@
     </form>
 
     <% } %>
-
 </div>
+<br><br><br>
 
 <%@ include file="footer.jsp" %>
 </body>
