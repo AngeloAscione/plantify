@@ -27,6 +27,25 @@ public class WishListItemDAO implements DAOInterface<WishListItemBean> {
         return null;
     }
 
+    public List<WishListItemBean> doRetrieveByWishlistId(long wishlistId) throws SQLException {
+        String query = "SELECT * FROM WishlistItem WHERE WishlistID = ?";
+        ArrayList<WishListItemBean> items;
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setLong(1, wishlistId);
+
+            items = new ArrayList<>();
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                WishListItemBean item = new WishListItemBean();
+                item.setWishListItemId(rs.getInt("IdWishlist"));
+                item.setProdottoId(rs.getInt("idProdotto"));
+                items.add(item);
+            }
+        }
+        return items;
+    }
+
     @Override
     public Collection<WishListItemBean> doRetrieveAll() throws SQLException {
         List<WishListItemBean> wishListItems = new ArrayList<>();
@@ -68,6 +87,15 @@ public class WishListItemDAO implements DAOInterface<WishListItemBean> {
         }
     }
 
+    public boolean doDelete(long wishlistId, long productId) throws SQLException {
+        try (Connection connection = DBConnector.getInstance().getConnection();
+                PreparedStatement ps = connection.prepareStatement(
+                "DELETE FROM WishlistItem WHERE WishlistID = ? AND ProdottoID = ?")) {
+            ps.setLong(1, wishlistId);
+            ps.setLong(2, productId);
+            return ps.executeUpdate() > 0;
+        }
+    }
     private WishListItemBean extractWishListItemFromResultSet(ResultSet resultSet) throws SQLException {
         WishListItemBean wishListItem = new WishListItemBean();
         wishListItem.setWishListItemId(resultSet.getInt("WishlistID"));
