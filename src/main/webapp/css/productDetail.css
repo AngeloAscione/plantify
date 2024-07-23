@@ -1,13 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #C4E3CA;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 .card-prodotto {
     display: flex;
     align-items: center;
