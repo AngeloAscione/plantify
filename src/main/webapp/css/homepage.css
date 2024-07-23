@@ -26,35 +26,3 @@ body {
     text-align: center;
     padding: 80px;
 }
-
-main {
-    padding: 20px;
-    text-align: center;
-}
-
-.best-selling {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.plant-grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.plant-item {
-    text-align: center;
-    width: 300px;
-}
-
-.plant-item img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.plant-item p {
-    margin: 5px 0;
-    font-size: 1.1em;
-}

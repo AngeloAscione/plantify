@@ -1,31 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fedeg
-  Date: 19/07/2024
-  Time: 15:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>Sezione Piante</title>
-    <link rel="stylesheet" href="css/provastyle.css">
-</head>
-<body>
-<section class="plant-section">
-    <div class="plant-card">
-        <img src="natural-plants.jpg" alt="Natural Plants">
-        <p>Natural Plants</p>
-    </div>
-    <div class="plant-card">
-        <img src="plant-accessories.jpg" alt="Plant Accessories">
-        <p>Plant Accessories</p>
-    </div>
-    <div class="plant-card">
-        <img src="artificial-plants.jpg" alt="Artificial Plants">
-        <p>Artificial Plants</p>
-    </div>
-</section>
-</body>
-</html>
+<%@ page import="it.unisa.model.prodotto.ProdottoBean" %>
+<%@ page import="it.unisa.model.prodotto.ProdottoDAO" %>
+<%@ page import="java.util.Collection" %>
+<main>
+    <link rel="stylesheet" href="css/products.css">
+    <section class="best-selling">
+        <div class="plant-grid">
+                <%
+            Collection<ProdottoBean> prodotti = new ProdottoDAO().doRetrieveAll();
+            if (prodotti != null && prodotti.size() > 0){
+                for(ProdottoBean pb : prodotti){ %>
+
+            <div class="plant-item">
+                <img src="<%=pb.getFoto()%>" alt="<%=pb.getNome()%>">
+                <p> <%=pb.getNome()%> </p>
+                <p> € <%=pb.getPrezzo()%> </p>
+            </div>
+                <% }
+            } else { %>
+            <p>Nessun prodotto trovato</p>
+                <% } %>
+
+    </section>
+</main>

@@ -16,27 +16,7 @@
             <%@ include file="search.jsp" %>
         </div>
 </header>
-<main>
-    <section class="best-selling">
-        <div class="plant-grid">
-            <%
-            Collection<ProdottoBean> prodotti = new ProdottoDAO().doRetrieveAll();
-            if (prodotti != null && prodotti.size() > 0){
-                for(ProdottoBean pb : prodotti){ %>
-
-                <div class="plant-item">
-                    <img src="<%=pb.getFoto()%>" alt="<%=pb.getNome()%>">
-                    <p> <%=pb.getNome()%> </p>
-                    <p> € <%=pb.getPrezzo()%> </p>
-                </div>
-            <% }
-            } else { %>
-                <p>Nessun prodotto trovato</p>
-            <% } %>
-
-    </section>
-</main>
-
+<%@include file="ideagallery.jsp"%>
 <%@ include file="footer.jsp" %>
 </body>
 </html>
