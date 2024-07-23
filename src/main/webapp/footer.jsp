@@ -10,7 +10,7 @@
 <footer>
     <div class="footer-container">
         <div class="footer-left">
-            <h2>GREENMIND</h2>
+            <h2>Plantify</h2>
             <p>We help you find your dream plant</p>
             <div class="social-icons">
                 <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>

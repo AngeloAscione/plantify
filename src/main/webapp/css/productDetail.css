@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #C4E3CA;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card-prodotto {
+    display: flex;
+    align-items: center;
+    background-color: #A7D3A8;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.image-prodotto {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plant-image {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 10px;
+}
+
+.info-prodotto {
+    flex: 2;
+    padding: 20px;
+}
+
+.info-prodotto h1 {
+    font-size: 2em;
+    margin: 0 0 20px 0;
+    color: #406c3f;
+}
+
+.info-prodotto p {
+    font-size: 1.2em;
+    margin: 5px 0;
+    color: #406c3f;
+}

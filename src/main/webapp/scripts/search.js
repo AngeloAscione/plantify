@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if(!Object.keys(obj).length){
             listData = '<li></li>';
         }else{
-            listData = Object.keys(obj).map(item => `<a href="product?id=${obj[item]}"><li>${item}</li></a>`)
+            listData = Object.keys(obj).map(item => `<a href="product?prodottoId=${obj[item]}"><li>${item}</li></a>`)
             listData = listData.join('');
         }
         resultBox.innerHTML = listData;

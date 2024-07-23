@@ -21,6 +21,9 @@ public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String type = req.getParameter("type");
+        if (type == null)
+            type = (String)req.getAttribute("type");
+
         UtenteDAO utenteDAO = new UtenteDAO();
         String address = "products.jsp";
         try {
@@ -71,7 +74,11 @@ public class ProductServlet extends HttpServlet {
         ProdottoDAO prodottoDAO = new ProdottoDAO();
         String address = "productDetails.jsp";
         try {
-            ProdottoBean pb = prodottoDAO.doRetrieveByKey(Integer.parseInt(req.getParameter("prodottoId")));
+            Integer prodottoId = Integer.parseInt(req.getParameter("prodottoId"));
+            if (prodottoId == null){
+                prodottoId = Integer.parseInt((String)req.getAttribute("prodottoId"));
+            }
+            ProdottoBean pb = prodottoDAO.doRetrieveByKey(prodottoId);
             req.setAttribute("getProductsDetails", 0);
             req.setAttribute("productDetails", pb);
         } catch (SQLException ex){
@@ -104,5 +111,13 @@ public class ProductServlet extends HttpServlet {
         prodotto.setFoto(foto);
 
         return prodotto;
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String prodottoId = req.getParameter("prodottoId");
+        req.setAttribute("prodottoId", prodottoId);
+        req.setAttribute("type", "getProductDetails");
+        doPost(req, resp);
     }
 }
