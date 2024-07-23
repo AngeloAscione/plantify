@@ -14,11 +14,11 @@ import java.io.IOException;
 public class AddWishList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
+       /* HttpSession session = req.getSession(true);
         synchronized (session) {
             session.setAttribute("UserInfo", ub);
             session.setAttribute("logged", true);
-        }
+        }*/
     }
 
 }

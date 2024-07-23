@@ -9,10 +9,13 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/products.css">
     <link rel="stylesheet" href="css/notification.css">
 </head>
 <body>
 <div id="notification"></div>
+<script type="module" src="scripts/notification.js"></script>
+
 <div class="container-form">
     <h1>Login</h1>
     <form action="login" method="post">
@@ -30,14 +33,18 @@
             Integer emailNotValid = (Integer) request.getAttribute("emailNotValid");
             String message = null;
             if ((passwordNotValid != null && passwordNotValid == 1) || (emailNotValid != null && emailNotValid == 1)) {
-                message = "Credenziali errate";
-            }
-
-            if (message != null){ %>
-                <div>
-                    <p style="color: red; font-size: 24px"> <%=message%> </p>
-                </div>
-            <% } %>
+                //message = "Credenziali errate";
+                %>
+                <script type="module">
+                    import {showNotification} from "./scripts/notification.js";
+                    showNotification("Credenziali errate","error");
+                </script>
+            <%}
+           // if (message != null){ %>
+        <!--<div>
+            <p style="color: red; font-size: 24px"> <%=message%> </p>
+        </div>-->
+        <% /*}*/ %>
     </form>
     <p>Don't have an account? <a href="register.jsp">Register here</a>.</p>
 </div>
