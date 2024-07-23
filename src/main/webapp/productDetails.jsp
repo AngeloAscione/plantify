@@ -28,7 +28,7 @@
 
     <%
         UtenteBean utenteBean;
-        utenteBean = (UtenteBean) session.getAttribute("UserInfo");
+        utenteBean = (UtenteBean) session.getAttribute("userInfo");
         if (utenteBean == null){
             utenteBean = new UtenteBean();
             utenteBean.setAdmin(false);

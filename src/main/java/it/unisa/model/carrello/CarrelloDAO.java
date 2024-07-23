@@ -26,6 +26,20 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean> {
         return null;
     }
 
+    public CarrelloBean doRetrieveByUserId(int id) throws SQLException {
+        String query = "SELECT * FROM Carrello WHERE UtenteID = ?";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, id);
+            try (ResultSet resultSet = stm.executeQuery()) {
+                if (resultSet.next()) {
+                    return extractCarrelloFromResultSet(resultSet);
+                }
+            }
+        }
+        return null;
+    }
+
     @Override
     public Collection<CarrelloBean> doRetrieveAll() throws SQLException {
         List<CarrelloBean> carrelli = new ArrayList<>();
@@ -49,6 +63,8 @@ public class CarrelloDAO implements DAOInterface<CarrelloBean> {
             return stm.executeUpdate() > 0;
         }
     }
+
+
 
     @Override
     public boolean doUpdate(CarrelloBean carrello) throws SQLException {

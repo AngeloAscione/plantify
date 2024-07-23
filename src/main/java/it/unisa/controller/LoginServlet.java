@@ -1,5 +1,6 @@
 package it.unisa.controller;
 
+import it.unisa.model.carrello.CarrelloDAO;
 import it.unisa.model.utente.UtenteBean;
 import it.unisa.model.utente.UtenteDAO;
 import it.unisa.utils.PasswordTool;
@@ -33,9 +34,13 @@ public class LoginServlet extends HttpServlet {
                 String loginPassword = req.getParameter("password");
                 if (PasswordTool.cipherPassword(loginPassword).equals(ub.getPassword())){
                     address = "homepage.jsp";
+
+                    CarrelloDAO carrelloDAO = new CarrelloDAO();
+                    carrelloDAO.doRetrieveByUserId(ub.getUtenteId());
+
                     HttpSession session = req.getSession(true);
                     synchronized (session) {
-                        session.setAttribute("UserInfo", ub);
+                        session.setAttribute("userInfo", ub);
                         session.setAttribute("logged", true);
                     }
                 } else {
