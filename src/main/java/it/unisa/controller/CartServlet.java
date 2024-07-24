@@ -3,6 +3,7 @@ package it.unisa.controller;
 import it.unisa.model.cartItem.CartItemBean;
 import it.unisa.model.cartItem.CartItemDAO;
 import it.unisa.model.prodotto.ProdottoDAO;
+import it.unisa.utils.CartHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,16 +24,14 @@ public class CartServlet extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
 
-
         if (type == null) return;
 
         switch (type){
             case "addToCart": {
-                addToCart(req);
-                out.print("{\"status\":\"success\",\"message\":\"Prodotto aggiunto al carrello.\"}");
+                CartHelper.addToCart(req);
+                out.println("{\"status\":\"success\"}");
             }
         }
-
         out.flush();
     }
 
@@ -41,15 +40,4 @@ public class CartServlet extends HttpServlet {
         doPost(req, resp);
     }
 
-    public void addToCart(HttpServletRequest request){
-        Integer prodottoId = Integer.parseInt(request.getParameter("prodottoId"));
-        CartItemBean cartItemBean = new CartItemBean();
-        cartItemBean.setProdottoId(prodottoId);
-        cartItemBean.setQuantita(1);
-
-        List<CartItemBean> carrello = (List<CartItemBean>)request.getSession().getAttribute("cart");
-        carrello.add(cartItemBean);
-
-        request.getSession().setAttribute("cart", carrello);
-    }
 }

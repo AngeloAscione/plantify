@@ -9,9 +9,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="css/products.css">
-<script src="scripts/cart.js"></script>
-
-
+<link rel="stylesheet" href="css/notification.css">
+<script type="module">
+    import {addToCart} from "./scripts/cart.js";
+    window.addToCart = addToCart;
+</script>
+<div id="notification"></div>
 <main>
     <section class="best-selling">
         <div class="plant-grid"><%

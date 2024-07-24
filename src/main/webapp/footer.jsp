@@ -13,9 +13,9 @@
             <h2>Plantify</h2>
             <p>We help you find your dream plant</p>
             <div class="social-icons">
-                <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-                <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-                <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+                <a href="#"><img src="images/facebook-icon.png" alt="Facebook" style="mix-blend-mode: multiply"></a>
+                <a href="#"><img src="images/instagram-icon.jpeg" alt="Instagram" style="mix-blend-mode: multiply"></a>
+                <a href="#"><img src="images/x-icon.png" alt="X" style="mix-blend-mode: multiply"></a>
             </div>
             <p>© 2024 Plant Shop</p>
         </div>

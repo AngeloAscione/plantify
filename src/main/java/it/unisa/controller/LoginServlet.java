@@ -20,7 +20,9 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -54,7 +56,7 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("logged", true);
                         session.setAttribute("carrelloId", carrelloBean.getCarrelloId());
                         session.setAttribute("wishListId", carrelloBean.getCarrelloId());
-                        List<CartItemBean> sessionCart = (List<CartItemBean>) session.getAttribute("cart");
+                        Set<CartItemBean> sessionCart = (Set<CartItemBean>) session.getAttribute("cart");
                         CartItemDAO cartItemDAO = new CartItemDAO();
                         session.setAttribute("cart", CartHelper.mergeCarts(carrelloBean.getCarrelloId(), cartItemDAO.doRetrieveAllByCartId(carrelloBean.getCarrelloId()), sessionCart));
                     }

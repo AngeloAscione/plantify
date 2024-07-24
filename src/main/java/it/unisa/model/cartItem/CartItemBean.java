@@ -2,6 +2,7 @@ package it.unisa.model.cartItem;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 public class CartItemBean implements Serializable {
     private int cartItemId;
@@ -39,5 +40,18 @@ public class CartItemBean implements Serializable {
 
     public void setQuantita(int quantita) {
         this.quantita = quantita;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CartItemBean that = (CartItemBean) o;
+        return prodottoId == that.prodottoId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prodottoId);
     }
 }

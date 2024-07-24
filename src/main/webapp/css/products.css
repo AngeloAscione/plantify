@@ -50,7 +50,7 @@ a{
     flex-direction: column; /* Dispone il nome del prodotto e il prezzo uno sotto l'altro */
 }
 
-.add-to-cart {
+.add-to-cart, .remove-from-cart {
     margin-left: 20px; /* Spazio tra il testo e il pulsante */
     background-color: #2f8f2f;
     outline: none;

@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -26,10 +27,10 @@ public class MainServlet extends HttpServlet {
 
         HttpSession session = req.getSession(true);
         synchronized (session) {
-            if ((List<CartItemBean>) session.getAttribute("cart") == null) {
-                session.setAttribute("cart", new ArrayList<CartItemBean>());
+            if (session.getAttribute("cart") == null) {
+                session.setAttribute("cart", new HashSet<CartItemBean>());
             }
-            if ((List<WishListItemBean>) session.getAttribute("wishList") == null){
+            if (session.getAttribute("wishList") == null){
                 session.setAttribute("wishList", new ArrayList<CartItemBean>());
             }
         }
