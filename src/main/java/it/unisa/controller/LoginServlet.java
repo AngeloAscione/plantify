@@ -1,8 +1,14 @@
 package it.unisa.controller;
 
+import it.unisa.model.WishList.WishListBean;
+import it.unisa.model.WishList.WishListDAO;
+import it.unisa.model.carrello.CarrelloBean;
 import it.unisa.model.carrello.CarrelloDAO;
+import it.unisa.model.cartItem.CartItemBean;
+import it.unisa.model.cartItem.CartItemDAO;
 import it.unisa.model.utente.UtenteBean;
 import it.unisa.model.utente.UtenteDAO;
+import it.unisa.utils.CartHelper;
 import it.unisa.utils.PasswordTool;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,6 +20,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -36,12 +43,20 @@ public class LoginServlet extends HttpServlet {
                     address = "homepage.jsp";
 
                     CarrelloDAO carrelloDAO = new CarrelloDAO();
-                    carrelloDAO.doRetrieveByUserId(ub.getUtenteId());
+                    CarrelloBean carrelloBean = carrelloDAO.doRetrieveByUserId(ub.getUtenteId());
+
+                    WishListDAO wishListDAO = new WishListDAO();
+                    WishListBean wishListBean = wishListDAO.doRetrieveByUserId(ub.getUtenteId());
 
                     HttpSession session = req.getSession(true);
                     synchronized (session) {
                         session.setAttribute("userInfo", ub);
                         session.setAttribute("logged", true);
+                        session.setAttribute("carrelloId", carrelloBean.getCarrelloId());
+                        session.setAttribute("wishListId", carrelloBean.getCarrelloId());
+                        List<CartItemBean> sessionCart = (List<CartItemBean>) session.getAttribute("cart");
+                        CartItemDAO cartItemDAO = new CartItemDAO();
+                        session.setAttribute("cart", CartHelper.mergeCarts(carrelloBean.getCarrelloId(), cartItemDAO.doRetrieveAllByCartId(carrelloBean.getCarrelloId()), sessionCart));
                     }
                 } else {
                     address = "login.jsp";

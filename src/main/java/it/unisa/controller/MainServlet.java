@@ -1,5 +1,6 @@
 package it.unisa.controller;
 
+import it.unisa.model.WishListItem.WishListItemBean;
 import it.unisa.model.cartItem.CartItemBean;
 
 import jakarta.servlet.ServletException;
@@ -27,6 +28,9 @@ public class MainServlet extends HttpServlet {
         synchronized (session) {
             if ((List<CartItemBean>) session.getAttribute("cart") == null) {
                 session.setAttribute("cart", new ArrayList<CartItemBean>());
+            }
+            if ((List<WishListItemBean>) session.getAttribute("wishList") == null){
+                session.setAttribute("wishList", new ArrayList<CartItemBean>());
             }
         }
 

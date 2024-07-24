@@ -1,6 +1,7 @@
 package it.unisa.model.cartItem;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class CartItemBean implements Serializable {
     private int cartItemId;

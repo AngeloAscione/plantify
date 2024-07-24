@@ -7,9 +7,5 @@ function addToCart(id){
             console.log(xhr.responseText);
         }
     };
-    let data = JSON.stringify({
-        "type": "addToCar",
-        "prodottoId": id
-    });
-    xhr.send(data);
+    xhr.send("type=addToCart&prodottoId=" + id);
 }

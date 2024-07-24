@@ -79,4 +79,18 @@ public class WishListDAO implements DAOInterface<WishListBean>  {
         wishList.setUtenteId(resultSet.getInt("UtenteID"));
         return wishList;
     }
+
+    public WishListBean doRetrieveByUserId(int utenteId) throws SQLException {
+        String query = "SELECT * FROM Wishlist WHERE UtenteID = ?";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, utenteId);
+            try (ResultSet resultSet = stm.executeQuery()) {
+                if (resultSet.next()) {
+                    return extractWishListFromResultSet(resultSet);
+                }
+            }
+        }
+        return null;
+    }
 }

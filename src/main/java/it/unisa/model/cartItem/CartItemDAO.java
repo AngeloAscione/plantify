@@ -27,7 +27,7 @@ public class CartItemDAO implements DAOInterface<CartItemBean> {
     }
 
 
-    public Collection<CartItemBean> doRetrieveAllByCartId(int id) throws SQLException {
+    public List<CartItemBean> doRetrieveAllByCartId(int id) throws SQLException {
         List<CartItemBean> cartItemBeanList = new ArrayList<>();
         String query = "SELECT * FROM CartItem where CarrelloID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();

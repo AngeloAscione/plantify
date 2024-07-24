@@ -1,5 +1,9 @@
 package it.unisa.controller;
 
+import it.unisa.model.carrello.CarrelloBean;
+import it.unisa.model.carrello.CarrelloDAO;
+import it.unisa.model.cartItem.CartItemBean;
+import it.unisa.model.cartItem.CartItemDAO;
 import it.unisa.model.WishList.WishListBean;
 import it.unisa.model.WishList.WishListDAO;
 import it.unisa.model.utente.UtenteBean;
@@ -15,6 +19,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.List;
 
 @WebServlet(name = "RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -44,22 +50,28 @@ public class RegisterServlet extends HttpServlet {
             try {
                 if (ud.doRetrieveByEmail(ub.getEmail()) == null){
                     ud.doSave(ub);
+                    ub = ud.doRetrieveByEmail(ub.getEmail());
                     // crea WishList
 
                     WishListBean wishList = new WishListBean();
                     wishList.setUtenteId(ub.getUtenteId());
-                    //Salva la WishList
-                    try {
-                        WishListDAO wishListDAO = new WishListDAO();
-                        wishListDAO.doSave(wishList);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    ub = ud.doRetrieveByEmail(ub.getEmail());
+                    WishListDAO wishListDAO = new WishListDAO();
+                    wishListDAO.doSave(wishList);
+                    wishList = wishListDAO.doRetrieveByUserId(ub.getUtenteId());
+
+                    CarrelloBean carrelloBean = new CarrelloBean();
+                    carrelloBean.setUtenteId(ub.getUtenteId());
+                    CarrelloDAO carrelloDAO = new CarrelloDAO();
+                    carrelloDAO.doSave(carrelloBean);
+                    carrelloBean = carrelloDAO.doRetrieveByUserId(ub.getUtenteId());
+
                     HttpSession session = req.getSession(true);
                     synchronized (session) {
-                        session.setAttribute("UserInfo", ub);
-                        session.setAttribute("logged", true);                    }
+                        session.setAttribute("userInfo", ub);
+                        session.setAttribute("logged", true);
+                        session.setAttribute("wishListId", wishList.getWishListId());
+                        session.setAttribute("carrelloId", carrelloBean.getCarrelloId());
+                    }
                 } else {
                     address = "register.jsp";
                     req.setAttribute("emailTaken", 1);

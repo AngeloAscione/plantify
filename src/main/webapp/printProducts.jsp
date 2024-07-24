@@ -9,6 +9,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="css/products.css">
+<script src="${pageContext.request.contextPath}/scripts/cart.js"></script>
+
 
 <main>
     <section class="best-selling">
