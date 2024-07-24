@@ -12,6 +12,7 @@
 <head>
     <title>${productDetails.nome}</title>
     <link rel="stylesheet" href="css/productDetail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -25,6 +26,16 @@
     <p>${productDetails.descrizione}</p>
     <p>${productDetails.prezzo}</p>
   </div>
+    <!--wishList-->
+    <form action="${pageContext.request.contextPath}/AddWishList" method="post">
+        <input type="hidden" name="prodottoId" value="${productDetails.prodottoId}">
+        <button class="addToWishlistButton"><i class="far fa-heart"></i></button>
+    </form>
+    <script>
+        document.querySelector('.addToWishlistButton').addEventListener('click', function() {
+        this.classList.toggle('active');});
+    </script>
+
 
     <%
         UtenteBean utenteBean;
