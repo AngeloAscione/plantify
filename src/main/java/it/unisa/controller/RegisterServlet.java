@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
         ub.setVia(req.getParameter("via"));
         ub.setCivico(Integer.parseInt(req.getParameter("civico")));
         ub.setCap(Integer.parseInt(req.getParameter("cap")));
-        ub.setTelefono(req.getParameter("numero"));
+        ub.setTelefono(req.getParameter("telefono"));
 
         String address;
         if (PasswordTool.isValidPassword(ub.getPassword())){

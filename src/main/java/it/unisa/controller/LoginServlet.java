@@ -70,11 +70,13 @@ public class LoginServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-//        resp.sendRedirect("homepage.jsp");
-//        RequestDispatcher requestDispatcher = req.getRequestDispatcher(address);
-//        requestDispatcher.forward(req, resp);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(address);
         requestDispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
     }
 
     @Override
