@@ -177,3 +177,7 @@ form input[type="submit"]:hover {
     color: #e63946; /* Colore rosso acceso per il cuore attivo */
     font-weight: 900; /* Peso pesante per il cuore pieno */
 }
+.add-to-cart-button{
+    background-color:#2f8f2f;
+    border: none;
+}

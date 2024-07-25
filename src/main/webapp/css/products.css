@@ -52,7 +52,7 @@ a{
 
 .add-to-cart, .remove-from-cart {
     margin-left: 20px; /* Spazio tra il testo e il pulsante */
-    background-color: #2f8f2f;
+    //background-color: #2f8f2f;
     outline: none;
     color: white;
     border: none;
@@ -67,8 +67,15 @@ a{
     appearance: none; /* Rimuove lo stile predefinito del browser */
     -webkit-appearance: none; /* Rimuove lo stile predefinito del browser su Webkit */
     -moz-appearance: none; /* Rimuove lo stile predefinito del browser su Firefox */
+    background: linear-gradient(to right, #66bb6a, #43a047);
+
 }
 
 .add-to-cart:hover {
     background-color: #276b27;
+}
+
+.add-to-cart-button{
+    background: linear-gradient(to right, #66bb6a, #43a047);
+    border: none;
 }

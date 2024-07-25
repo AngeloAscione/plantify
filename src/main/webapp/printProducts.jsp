@@ -30,9 +30,9 @@
                                     <p> <%=pb.getNome()%> </p>
                                     <p> € <%=pb.getPrezzo()%> </p>
                                 </div>
-                                <div class="add-to-cart">
-                                    <button onclick="addToCart(<%= pb.getProdottoId() %>)">Aggiungi al carrello</button>
-                                </div>
+                               <!-- <div class="add-to-cart">-->
+                                    <button class="add-to-cart" onclick="addToCart(<%= pb.getProdottoId() %>)">Aggiungi al carrello</button>
+                             <!--   </div>-->
                             </div>
                         </div>
                 <% }
