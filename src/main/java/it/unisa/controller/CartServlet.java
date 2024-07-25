@@ -27,8 +27,12 @@ public class CartServlet extends HttpServlet {
         if (type == null) return;
 
         switch (type){
-            case "addToCart": {
+            case "addToCart" -> {
                 CartHelper.addToCart(req);
+                out.println("{\"status\":\"success\"}");
+            }
+            case "removeFromCart" -> {
+                CartHelper.removeFromCart(req);
                 out.println("{\"status\":\"success\"}");
             }
         }

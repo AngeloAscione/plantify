@@ -29,6 +29,10 @@ La pagina deve avere un div con un id "notification"
     background-color: #f44336;
 }
 
+#notification.info {
+    background-color: #38a3a5;
+}
+
 #notification.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;

@@ -50,4 +50,12 @@ public class CartHelper {
             carrello.add(cartItemBean);
     }
 
+    public static void removeFromCart(HttpServletRequest request){
+        Integer prodottoId = Integer.parseInt(request.getParameter("prodottoId"));
+        Set<CartItemBean> carrello = (Set<CartItemBean>)request.getSession().getAttribute("cart");
+        CartItemBean toRemove = new CartItemBean();
+        toRemove.setProdottoId(prodottoId);
+        carrello.remove(toRemove);
+    }
+
 }
