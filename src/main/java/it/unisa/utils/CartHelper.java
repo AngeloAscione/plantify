@@ -128,6 +128,7 @@ public class CartHelper {
             }
         }).sum();
 
+        request.getSession().setAttribute("totalPrice", String.format("%.2f",totalPrice));
         return "{\"status\":\"success\", \"totalPrice\":\""+ String.format("%.2f",totalPrice) +"\"}";
     }
 
@@ -136,11 +137,16 @@ public class CartHelper {
         if (carrello == null) return;
 
         CartItemDAO cartItemDAO = new CartItemDAO();
-
         HttpSession session = request.getSession();
 
+        try {
+            cartItemDAO.doRemoveByCartId((Integer) session.getAttribute("carrelloId"));
+        }catch (SQLException ex){
+            System.out.println("[INFO] Cannot remove from cartItem list with cartId " + (Integer) session.getAttribute("carrelloId"));
+        }
+
         for (CartItemBean i : carrello){
-            i.setCartItemId((Integer) session.getAttribute("carrelloId"));
+            i.setCarrelloId((Integer) session.getAttribute("carrelloId"));
             try {
                 cartItemDAO.doSave(i);
             } catch (SQLException e) {
@@ -148,5 +154,28 @@ public class CartHelper {
             }
         }
 
+    }
+
+    public static void getCart(HttpServletRequest request) {
+
+        if (request.getSession().getAttribute("logged") == null)
+            return;
+
+        HttpSession session = request.getSession();
+        Set<CartItemBean> carrello = (Set<CartItemBean>)session.getAttribute("cart");
+        CartItemDAO cartItemDAO = new CartItemDAO();
+        Set<CartItemBean> finalCart = null;
+        try {
+            if (carrello != null) {
+                finalCart = mergeCarts((Integer) session.getAttribute("carrelloId"), cartItemDAO.doRetrieveAllByCartId((Integer) session.getAttribute("carrelloId")), carrello);
+                cartItemDAO.doRemoveByCartId((Integer) session.getAttribute("carrelloId"));
+            } else {
+                finalCart = cartItemDAO.doRetrieveAllByCartId((Integer) session.getAttribute("carrelloId"));
+            }
+        } catch (SQLException ex){
+            ;
+        }
+
+        session.setAttribute("cart", finalCart);
     }
 }

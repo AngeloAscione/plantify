@@ -27,6 +27,10 @@ public class CartServlet extends HttpServlet {
         if (type == null) return;
 
         switch (type){
+            case "getCart" -> {
+                CartHelper.getCart(req);
+                req.getRequestDispatcher("cart.jsp").forward(req, resp);
+            }
             case "addToCart" -> {
                 String response = CartHelper.addToCart(req);
                 out.println(response);

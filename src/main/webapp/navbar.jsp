@@ -10,7 +10,7 @@
         <li><a href="products.jsp">Products</a></li>
     </ul>
     <div class="nav-icons">
-        <a href="cart.jsp"><img src="images/cart.jpg" alt="Cart"></a>
+        <a href="cart?type=getCart"><img src="images/cart.jpg" alt="Cart"></a>
        <!-- gestione da accedi o registrati-->
         <%
             Boolean logged = (Boolean) request.getSession().getAttribute("logged");
@@ -21,7 +21,7 @@
         <% if (!logged){ %>
             <div class="toggle-buttons">
                 <a class="btn-text-up" href="register.jsp"><button class="btn sign-up">Sign Up</button></a>
-                <a class="btn-text-in" href="login.jsp"><button class="btn log-in">Log in</button></a>
+                <a class="btn-text-in" href="login.jsp" style="color: black !important;"><button class="btn log-in">Log in</button></a>
             </div>
         <% } else { %>
             <a href="user.jsp"><img src="images/user.jpg" alt="Cart"></a>

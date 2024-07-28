@@ -102,4 +102,15 @@ public class CartItemDAO implements DAOInterface<CartItemBean> {
         cartItem.setQuantita(resultSet.getInt("Qta"));
         return cartItem;
     }
+
+    public boolean doRemoveByCartId(int id) throws SQLException {
+        String query = "DELETE FROM CartItem WHERE CarrelloID = ?";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1,id);
+            int rowDelete = statement.executeUpdate(); /*ritorna numero riga eliminate */
+            return rowDelete >0 ;
+            /* verifica se almeno una riga è stata effettivamente eliminata dalla tabella.*/
+        }
+    }
 }

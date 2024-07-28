@@ -56,9 +56,6 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("logged", true);
                         session.setAttribute("carrelloId", carrelloBean.getCarrelloId());
                         session.setAttribute("wishListId", carrelloBean.getCarrelloId());
-                        Set<CartItemBean> sessionCart = (Set<CartItemBean>) session.getAttribute("cart");
-                        CartItemDAO cartItemDAO = new CartItemDAO();
-                        session.setAttribute("cart", CartHelper.mergeCarts(carrelloBean.getCarrelloId(), cartItemDAO.doRetrieveAllByCartId(carrelloBean.getCarrelloId()), sessionCart));
                     }
                 } else {
                     address = "login.jsp";

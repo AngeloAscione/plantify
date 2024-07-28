@@ -31,6 +31,11 @@ export function removeFromCart(id) {
                 const totale = document.querySelector(".cart-summary p");
                 totale.innerText = "Totale (" + json_obj.dimCarrello + (parseInt(json_obj.dimCarrello) == 1 ? " articolo" : " articoli") +")";
                 updateTotalPrice();
+                if (parseInt(json_obj.dimCarrello) == 0){
+                    const buttonOrder = document.querySelector(".add-to-cart-button-link");
+                    buttonOrder.setAttribute("href", "#");
+                    buttonOrder.setAttribute("alt", "Aggiungi almeno un articolo al carrello per procedere all'ordine");
+                }
             }
         }
     }
@@ -53,6 +58,8 @@ function updateQta(numberInput, prodottoId, newQta) {
     console.log("Tento aggiornamento qta per prodotto con id = " + prodottoId);
     if (newQta == 0) {
         return removeFromCart(prodottoId)
+    } else if (newQta > 0) {
+        document.querySelector(".add-to-cart-button-link").setAttribute("href", "checkout.jsp");
     }
 
     let xhr = new XMLHttpRequest();
@@ -63,7 +70,7 @@ function updateQta(numberInput, prodottoId, newQta) {
             var json_obj = JSON.parse(xhr.responseText);
             if (json_obj.status == "maxOverflow"){
                 numberInput.value = json_obj.maxNum;
-                showNotification("Quantità limitata, massimo acquistabile = " + json_obj.maxNum, "info");
+                showNotification("Quantità limitata, massimo acquistabile " + json_obj.maxNum, "info");
             }
             const totale = document.querySelector(".cart-summary p");
             totale.innerText = "Totale (" + json_obj.dimCarrello + (parseInt(json_obj.dimCarrello) == 1 ? " articolo" : " articoli") +")";

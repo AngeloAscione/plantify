@@ -70,14 +70,25 @@
             </div>
         <% } %>
         <div class="cart-summary">
-            <p>Totale (<%= dimCarrello %> <%= carrello.size() == 1 ? "articolo" : "articoli" %>): <%= String.format("%.2f",prezzo) %></p>
-            <button class="add-to-cart">Procedi all'ordine</button>
+            <% if (request.getSession().getAttribute("logged") != null && (Boolean) request.getSession().getAttribute("logged")){ %>
+            <p>Totale (<%= dimCarrello %> <%= carrello.size() == 1 ? "articolo" : "articoli" %>): <%=String.format("%.2f", prezzo)%> €</p>
+            <% String link;
+                if (prezzo > 0.0){
+                    link = "checkout.jsp";
+            } else {
+                    link = "#";
+            } %>
+            <a class="add-to-cart-button-link" href="<%= link %>" style="text-decoration: none; color: white"><button class="add-to-cart">Procedi all'ordine</button></a>
+            <%
+            request.getSession().setAttribute("totalPrice", String.format("%.2f", prezzo));
+            } else { %>
+                <span> Effettua il <a href="login.jsp">login</a> per completare l'ordine </span>
+            <% } %>
         </div>
         <% } else { %>
     <p>Nessun prodotto trovato nel carrello, <a href="products.jsp" style="text-decoration: none">sfoglia il catalogo!</a></p>
     <% } %>
     </div>
 
-<%@ include file="footer.jsp" %>
 </body>
 </html>

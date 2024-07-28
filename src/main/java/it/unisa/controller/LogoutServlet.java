@@ -25,7 +25,7 @@ public class LogoutServlet extends HttpServlet {
         }
 
         session.invalidate();
-        resp.sendRedirect("homepage.jsp");
+        resp.sendRedirect("index.html");
     }
 
     @Override

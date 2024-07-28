@@ -40,16 +40,26 @@ public class OrdineDAO implements DAOInterface<OrdineBean> {
     }
 
     @Override
-    public boolean doSave(OrdineBean ordine) throws SQLException {
+    public boolean doSave(OrdineBean ordineBean){
+        return false;
+    }
+
+    public int doSave(OrdineBean ordine, boolean getKey) throws SQLException {
         String query = "INSERT INTO Ordine (UtenteID, DataOrdine, Totale, Stato) VALUES (?, ?, ?, ?)";
         try(Connection connection = DBConnector.getInstance().getConnection();
-            PreparedStatement stm = connection.prepareStatement(query)) {
+            PreparedStatement stm = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)) {
             stm.setInt(1, ordine.getUtenteId());
             stm.setDate(2, Date.valueOf(ordine.getDataOrdine().toLocalDate()));
             stm.setDouble(3, ordine.getTotale());
             stm.setString(4, ordine.getStatoOrdine().toString());
-            return stm.executeUpdate() > 0;
+            if(stm.executeUpdate() > 0){
+                ResultSet generatedKey = stm.getGeneratedKeys();
+                if (generatedKey.next()){
+                    return generatedKey.getInt(1);
+                }
+            }
         }
+        return -1;
     }
 
     @Override
