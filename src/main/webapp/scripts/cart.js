@@ -26,7 +26,11 @@ export function removeFromCart(id) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var json_obj = JSON.parse(xhr.responseText);
             if (json_obj.status == "success"){
-                document.getElementsByClassName("cart-item "+ id)[0].remove()
+                showNotification("Oggetto rimosso dal carrello", "info")
+                document.getElementsByClassName("cart-item "+ id)[0].remove();
+                const totale = document.querySelector(".cart-summary p");
+                totale.innerText = "Totale (" + json_obj.dimCarrello + (parseInt(json_obj.dimCarrello) == 1 ? " articolo" : " articoli") +")";
+                updateTotalPrice();
             }
         }
     }
@@ -42,13 +46,14 @@ qtaInputs.forEach(input => {
         console.log(prodottoId);
         console.log(newQta);
         updateQta(e.target, prodottoId, newQta)
-        updateTotalPrice();
     })
 })
 
 function updateQta(numberInput, prodottoId, newQta) {
     console.log("Tento aggiornamento qta per prodotto con id = " + prodottoId);
-    if (newQta == 0) return removeFromCart(prodottoId)
+    if (newQta == 0) {
+        return removeFromCart(prodottoId)
+    }
 
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "cart?type=updateQta&newQta="+newQta+"&prodottoId=" + prodottoId, true);
@@ -60,11 +65,27 @@ function updateQta(numberInput, prodottoId, newQta) {
                 numberInput.value = json_obj.maxNum;
                 showNotification("Quantità limitata, massimo acquistabile = " + json_obj.maxNum, "info");
             }
+            const totale = document.querySelector(".cart-summary p");
+            totale.innerText = "Totale (" + json_obj.dimCarrello + (parseInt(json_obj.dimCarrello) == 1 ? " articolo" : " articoli") +")";
+            updateTotalPrice();
         }
     }
     xhr.send();
 }
 
 export function updateTotalPrice() {
-
+    console.log("Chiedo prezzo totale");
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "cart?type=totalPrice", true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.onreadystatechange = function (){
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json_obj = JSON.parse(xhr.responseText);
+            if (json_obj.status == "success"){
+                const totale = document.querySelector(".cart-summary p");
+                totale.innerText += ": "+ json_obj.totalPrice + " €";
+            }
+        }
+    }
+    xhr.send();
 }

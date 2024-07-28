@@ -27,8 +27,8 @@ public class CartItemDAO implements DAOInterface<CartItemBean> {
     }
 
 
-    public List<CartItemBean> doRetrieveAllByCartId(int id) throws SQLException {
-        List<CartItemBean> cartItemBeanList = new ArrayList<>();
+    public Set<CartItemBean> doRetrieveAllByCartId(int id) throws SQLException {
+        Set<CartItemBean> cartItemBeanList = new HashSet<>();
         String query = "SELECT * FROM CartItem where CarrelloID = ?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement stm = connection.prepareStatement(query)) {

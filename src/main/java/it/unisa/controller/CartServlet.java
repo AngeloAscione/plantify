@@ -28,12 +28,20 @@ public class CartServlet extends HttpServlet {
 
         switch (type){
             case "addToCart" -> {
-                CartHelper.addToCart(req);
-                out.println("{\"status\":\"success\"}");
+                String response = CartHelper.addToCart(req);
+                out.println(response);
             }
             case "removeFromCart" -> {
-                CartHelper.removeFromCart(req);
-                out.println("{\"status\":\"success\"}");
+                String response = CartHelper.removeFromCart(req);
+                out.println(response);
+            }
+            case "updateQta" -> {
+                String response = CartHelper.updateQta(req);
+                out.println(response);
+            }
+            case "totalPrice" -> {
+                String response = CartHelper.totalPrice(req);
+                out.println(response);
             }
         }
         out.flush();
