@@ -13,7 +13,7 @@ public class CartItemDAO implements DAOInterface<CartItemBean> {
 
     @Override
     public CartItemBean doRetrieveByKey(int id) throws SQLException {
-        String query = "SELECT  * FROM cartItem WHERE id=?";
+        String query = "SELECT  * FROM CartItem WHERE CartItemID=?";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
