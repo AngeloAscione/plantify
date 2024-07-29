@@ -20,7 +20,8 @@
         <div class="plant-grid"><%
             Collection<ProdottoBean> prodotti = new ProdottoDAO().doRetrieveAll();
             if (prodotti != null && prodotti.size() > 0){
-                for(ProdottoBean pb : prodotti){ %>
+                for(ProdottoBean pb : prodotti){
+                        if (pb.getQta() >= 0){%>
                         <div class="plant-item">
                             <a href="product?prodottoId=<%=pb.getProdottoId()%>">
                                 <img src="<%=pb.getFoto()%>" alt="<%=pb.getNome()%>">
@@ -35,7 +36,7 @@
                              <!--   </div>-->
                             </div>
                         </div>
-                <% }
+                <% }}
             } else { %>
                 <p>Nessun prodotto trovato</p>
             <% } %>

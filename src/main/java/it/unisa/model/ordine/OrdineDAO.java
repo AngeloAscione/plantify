@@ -5,9 +5,8 @@ import it.unisa.utils.DBConnector;
 
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.sql.Date;
+import java.util.*;
 
 public class OrdineDAO implements DAOInterface<OrdineBean> {
     @Override
@@ -28,7 +27,7 @@ public class OrdineDAO implements DAOInterface<OrdineBean> {
     @Override
     public Collection<OrdineBean> doRetrieveAll() throws SQLException {
         List<OrdineBean> ordini = new ArrayList<>();
-        String query = "SELECT * FROM Carrello";
+        String query = "SELECT * FROM Ordine";
         try (Connection connection = DBConnector.getInstance().getConnection();
              PreparedStatement stm = connection.prepareStatement(query);
              ResultSet resultSet = stm.executeQuery()) {
@@ -94,5 +93,19 @@ public class OrdineDAO implements DAOInterface<OrdineBean> {
         ordine.setTotale(resultSet.getDouble("Totale"));
         ordine.setStatoOrdine(OrdineBean.StatoOrdine.valueOf(resultSet.getString("Stato").toUpperCase()));
         return ordine;
+    }
+
+    public Set<OrdineBean> doRetrieveByUserId(int id) throws SQLException {
+        Set<OrdineBean> ordini = new HashSet<>();
+        String query = "SELECT * FROM Ordine where UtenteID = ?";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, id);
+            ResultSet resultSet = stm.executeQuery();
+            while (resultSet.next()) {
+                ordini.add(extractOrdineFromResultSet(resultSet));
+            }
+        }
+        return ordini;
     }
 }

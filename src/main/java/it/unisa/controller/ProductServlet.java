@@ -2,6 +2,7 @@ package it.unisa.controller;
 
 import it.unisa.model.prodotto.ProdottoBean;
 import it.unisa.model.prodotto.ProdottoDAO;
+import it.unisa.model.utente.UtenteBean;
 import it.unisa.model.utente.UtenteDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -28,21 +29,21 @@ public class ProductServlet extends HttpServlet {
         String address = "products.jsp";
         try {
             switch (type) {
-                case "addProduct":
-                case "modifyProduct":
-                case "deleteProduct":
-                    try {
-                        if (utenteDAO.isAdmin(Integer.parseInt(req.getParameter("utenteId")))) {
-                            ProductServlet.class.getMethod(type, new Class[]{HttpServletRequest.class}).invoke(req);
-                            req.setAttribute(type, 0);
-                        }
-                    }catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException ex){
-                        ;
-                    }
-                    break;
-                case "getProductDetails":
+                case "addProduct" -> {
+                    if(utenteDAO.isAdmin(((UtenteBean)req.getSession().getAttribute("userInfo")).getUtenteId()))
+                        addProduct(req);
+                }
+                case "modifyProduct" -> {
+                    if(utenteDAO.isAdmin(((UtenteBean)req.getSession().getAttribute("userInfo")).getUtenteId()))
+                        modifyProduct(req);
+                }
+                case "deleteProduct" -> {
+                    if (utenteDAO.isAdmin(((UtenteBean)req.getSession().getAttribute("userInfo")).getUtenteId()))
+                        deleteProduct(req);
+                }
+                case "getProductDetails" -> {
                     address = getProductDetails(req);
-                    break;
+                }
             }
         }catch (SQLException ex){
             req.setAttribute(type, 1);
@@ -66,8 +67,8 @@ public class ProductServlet extends HttpServlet {
 
     private void deleteProduct(HttpServletRequest req) throws SQLException {
         ProdottoBean prodottoBean = createProdottoBeanFromRequest(req);
-        ProdottoDAO prodottoDAO = new ProdottoDAO();
-        prodottoDAO.doDelete(prodottoBean.getProdottoId());
+        prodottoBean.setQta(-1);
+        new ProdottoDAO().doUpdate(prodottoBean);
     }
 
     private String getProductDetails(HttpServletRequest req){
@@ -89,28 +90,8 @@ public class ProductServlet extends HttpServlet {
         return address;
     }
 
-    public static ProdottoBean createProdottoBeanFromRequest(HttpServletRequest request) {
-        ProdottoBean prodotto = new ProdottoBean();
-
-        // Ottieni i parametri dalla request e imposta i campi del bean
-        int prodottoId = Integer.parseInt(request.getParameter("prodottoId") != null ? request.getParameter("prodottoId") : "-1");
-        int categoriaId = Integer.parseInt(request.getParameter("categoriaId") != null ? request.getParameter("categoriaId") : "-1");
-        String nome = request.getParameter("nome");
-        String descrizione = request.getParameter("descrizione");
-        Double prezzoStr = Double.parseDouble(request.getParameter("prezzo") != null ? request.getParameter("prezzo") : "0.0");
-        int qta = Integer.parseInt(request.getParameter("qta") != null ? request.getParameter("qta") : "0");
-        String foto = request.getParameter("foto");
-
-        // Converti i parametri in tipi adeguati e imposta i campi del bean
-        prodotto.setProdottoId(prodottoId);
-        prodotto.setCategoriaId(categoriaId);
-        prodotto.setNome(nome);
-        prodotto.setDescrizione(descrizione);
-        prodotto.setPrezzo(prezzoStr);
-        prodotto.setQta(qta);
-        prodotto.setFoto(foto);
-
-        return prodotto;
+    public static ProdottoBean createProdottoBeanFromRequest(HttpServletRequest request) throws SQLException {
+        return new ProdottoDAO().doRetrieveByKey(Integer.parseInt(request.getParameter("prodottoId")));
     }
 
     @Override

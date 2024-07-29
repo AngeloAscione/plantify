@@ -51,13 +51,13 @@ public class OrderHelper {
                 }
                 temp.setProdottoId(i.getProdottoId());
                 temp.setOrdineId(newKey);
-                temp.setPrezzo(prodottoDAO.doRetrieveByKey(i.getProdottoId()).getPrezzo());
+                temp.setPrezzo(prodottoDAO.doRetrieveByKey(i.getProdottoId()).getPrezzo() * temp.getQuantita());
                 ordineBean.setTotale(ordineBean.getTotale() + temp.getPrezzo());
                 orderItemDAO.doSave(temp);
             }
 
 
-            ordineDAO.doSave(ordineBean, false);
+            ordineDAO.doUpdate(ordineBean);
             cartItemDAO.doRemoveByCartId((Integer) request.getSession().getAttribute("carrelloId"));
             request.getSession().setAttribute("cart", null);
 
@@ -70,4 +70,19 @@ public class OrderHelper {
     }
 
 
+    public static void getOrders(HttpServletRequest request) {
+
+        if (request.getSession().getAttribute("logged") == null){
+            return;
+        }
+
+        OrdineDAO ordineDAO = new OrdineDAO();
+        try {
+            Set<OrdineBean> ordini = ordineDAO.doRetrieveByUserId(((UtenteBean)request.getSession().getAttribute("userInfo")).getUtenteId());
+            request.setAttribute("ordini", ordini);
+        } catch (SQLException e) {
+            return;
+        }
+
+    }
 }

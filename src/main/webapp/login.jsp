@@ -10,7 +10,9 @@
     <title>Login</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/products.css">
- </head>
+    <link rel="stylesheet" href="css/notification.css">
+
+</head>
 <body>
 <div id="notification"></div>
 <script type="module" src="scripts/notification.js"></script>

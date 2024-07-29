@@ -7,9 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class OrderItemDAO implements DAOInterface<OrderItemBean> {
 
@@ -89,4 +87,17 @@ public class OrderItemDAO implements DAOInterface<OrderItemBean> {
         return orderItem;
     }
 
+    public Set<OrderItemBean> doRetrieveByOrderId(int ordineId) throws SQLException {
+        Set<OrderItemBean> orderItemList = new HashSet<>();
+        String query = "SELECT * FROM OrderItem WHERE OrdineID = ?";
+        try (Connection connection = DBConnector.getInstance().getConnection();
+             PreparedStatement stm = connection.prepareStatement(query)) {
+            stm.setInt(1, ordineId);
+            ResultSet resultSet = stm.executeQuery();
+            while (resultSet.next()) {
+                orderItemList.add(extractOrderItemFromResultSet(resultSet));
+            }
+        }
+        return orderItemList;
+    }
 }
