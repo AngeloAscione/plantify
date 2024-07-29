@@ -49,11 +49,6 @@
 
     <% if (utenteBean.isAdmin()) { %>
     <form action="product" method="post">
-        <input name="type" value="modifyProduct" hidden>
-        <input name="prodottoId" value="${productDetails.prodottoId}" hidden>
-        <input type="submit" value="Modifica prodotto">
-    </form>
-    <form action="product" method="post">
         <input name="type" value="deleteProduct" hidden>
         <input name="prodottoId" value="${productDetails.prodottoId}" hidden>
         <input name="utenteId" value="<% utenteBean.getUtenteId(); %>" hidden>
